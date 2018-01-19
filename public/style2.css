@@ -1,0 +1,89 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  background: url("https://4kwallpapers.co/wp-content/uploads/2015/07/Dark-Grey-Red-Material-Design-4K-Wallpaper.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
+
+h2{
+  color: white;
+  font-size: 50px;
+}
+
+.loggedIn{
+  color: white;
+}
+
+.navBar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 34.5px;
+  background-color: red;
+  border-bottom: 1px solid black;
+}
+
+.logo h1 {
+  position: relative;
+  top: -6px;
+  font-size: 25px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: white;
+}
+
+.topNav{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.navLinks{
+  font-size: 25px;
+  padding-right: 20px;
+}
+
+.reviewOverview{
+  margin-top: 175px;
+  text-align: center;
+}
+
+.flex-container{
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin-bottom: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+  min-height: 200px;
+  max-height: 100%;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: red;
+  border-radius: 20px;
+  font-size: 20px;
+}

@@ -1,0 +1,40 @@
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  background: url("https://4kwallpapers.co/wp-content/uploads/2015/07/Dark-Grey-Red-Material-Design-4K-Wallpaper.jpg") no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+body{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+.mainheader{
+  color: white;
+  text-align: center;
+  font-family: 'Russo One', sans-serif;
+  font-size: 50px;
+}
+
+.formDiv{
+	font-size: 20px;
+	margin-top: 50%;
+	/*align-items: center;*/
+}
+
+.flexContainer{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*background-color: #ff3503;*/
+}
