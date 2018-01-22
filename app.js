@@ -9,48 +9,55 @@ let mockReviewData = {
 		gameTitle: "Mario Odyssey",
 		gamePlatform: "Nintendo Switch",
 		gameScore: "10",
-		scorePicture: $("#scorePicture").attr('src', "http://via.placeholder.com/150x150"),
-		gameImage: $("#gamePicture").attr('src', "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png"),
-		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way.",
+		scorePicture: "http://via.placeholder.com/150x150",
+		scorePicture2: "http://via.placeholder.com/100x100",
+		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
+		gameImage2: "http://via.placeholder.com/100x100",
+		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
 		// reviewDate: Date.now
 	},
 
-	{
-	author:{
-			firstName: "Josh",
-			lastName: "Gore"
-		},
-		postTitle: "Best Game Ever",
-		gameTitle: "Super Metroid",
-		gamePlatform: "Super NES",
-		gameScore: "9",
-		scorePicture: $("#scorePicture").attr('src', "http://via.placeholder.com/150x150"),
-		gameImage: $("#gamePicture").attr('src', "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg"),
-		postReview: "Super Metroid displays a clear understanding of what makes Metroid tick, and is neck and neck for top billing among its esteemed predecessors.",
-		// reviewDate: Date.now
-	}
+	// {
+	// author:{
+	// 		firstName: "Josh",
+	// 		lastName: "Gore"
+	// 	},
+	// 	postTitle: "Best Game Ever",
+	// 	gameTitle: "Super Metroid",
+	// 	gamePlatform: "Super NES",
+	// 	gameScore: "9",
+	// 	scorePicture: "http://via.placeholder.com/150x150",
+	// 	scorePicture2: "http://via.placeholder.com/100x100",
+	// 	gameImage: "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
+	// 	gameImage2: "http://via.placeholder.com/100x100",
+	// 	postReview: "Super Metroid displays a clear understanding of what makes Metroid tick, and is neck and neck for top billing among its esteemed predecessors."
+	// 	// reviewDate: Date.now
+	// }
 	]
 };
 
+
+
+//HOMEPAGE DATA (homepage.html)
 function renderReviewData(result){
 	return `
-	      <h2>Click To See Full Review</h2>
         	<div class="flex-container">
           		<div class="box"> 
-            		<div id="gameImage"> <img id="gamePicture" src= "${result.recentReviews.gameImage}"> 
+            		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}"> 
             		</div>
-            		<div id="postInfo"> 
-               			<p class="authorName"> `${result.recentReviews.author.firstName} ${result.recentReviews.author.lastName} .trim()`</p>
-               			<p class="gameTitle">${result.recentReviews.gameTitle}</p> 
-               			<p class="platform">${result.recentReviews.gamePlatform}</p>
+            		<div class="postInfo"> 
+               			<p class="authorName"> ${result.author.firstName} ${result.author.lastName.trim()}</p>
+               			<p class="gameTitle">${result.gameTitle}</p> 
+               			<p class="platform">${result.gamePlatform}</p>
             		</div>
-            		<div id="scoreInfo"> <img id="scorePicture" src= ${result.recentReviews.scorePicture}>
-               		<p class="score">7</p>
+            		<div class="scoreInfo"> <img class="scorePicture" src= "${result.scorePicture}">
+               		<p class="score">${result.gameScore}</p>
             		</div>
           		</div>
         	</div>
 	`
 }
+
 
 function getReviewData(callback) {
 	setTimeout(function(){callback(mockReviewData)}, 100);
@@ -58,7 +65,7 @@ function getReviewData(callback) {
 
 function displayReviews(data){
 	const reviewResults = data.recentReviews.map(renderReviewData);
-	$(".reviewOverview").html(reviewResults);
+	$(".flexParent").html(reviewResults);
 }
 
 function getAndDisplayReviews(){
@@ -73,63 +80,59 @@ $(function(){
 
 
 
+// CLICKABLE REVIEW DATA PAGE 3(review.html)
+function renderReviewDataTwo(resultTwo){
+	return `
+	<section role="region">
+    <div class="reviewOverviewTwo">
+      <h2 class="postTitle">${resultTwo.postTitle}</h2>
+      <h3 class="gameTitle">${resultTwo.gameTitle}</h3>
+      <h4 class="authorName">${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</h4>
+      <div class="flexParent2">
+        <div class="flex-container">
+          <div class="box">
+          	<p class="postedReview">${resultTwo.postReview}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
-
-
-
-var MOCK_STATUS_UPDATES = {
-    "statusUpdates": [
-        {
-            "id": "1111111",
-            "text": "Can't believe how much fun I'm having.",
-            "friendId": "aaaaaa",
-            "friendName": "John Doe",
-            "publishedAt": 1470016976609
-        },
-        {
-            "id": "2222222",
-            "text": "Have FOMO? Well you SHOULD!",
-            "friendId": "bbbbbbb",
-            "friendName": "Jane Doe",
-            "publishedAt": 1470012976609
-        },
-        {
-            "id": "333333",
-            "text": "They're giving out immortality and free $$$ where I am.",
-            "friendId": "cccc",
-            "friendName": "Jim Doe",
-            "publishedAt": 1470011976609
-        },
-        {
-            "id": "4444444",
-            "text": "humble brag humble brag humble brag",
-            "friendId": "ddddd",
-            "friendName": "Jackie Doe",
-            "publishedAt": 1470009976609
-        }
-    ]
-};
-
-function getRecentStatusUpdates(callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 100);
+<div class="footer">
+  <div class="flex-container2">
+          <div class="box2"> 
+            <div class="gameImage2"> <img src= ${resultTwo.gameImage2}> 
+            </div>
+            <div id="postInfo2"> 
+               <p class="authorName">${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</p>
+               <p class="gameTitle">${resultTwo.gameTitle}</p> 
+               <p class="platform">${resultTwo.gamePlatform}</p>
+            </div>
+            <div id="scoreInfo2"> <img src= ${resultTwo.scorePicture2}>
+               <p class="score">${resultTwo.gameScore}</p>
+            </div>
+          </div>
+        </div>
+</div>`
 }
 
-// this function stays the same when we connect
-// to real API later
-function displayStatusUpdates(data) {
-    for (index in data.statusUpdates) {
-       $('body').append(
-        '<p>' + data.statusUpdates[index].text + '</p>');
-    }
+function getReviewDataTwo(callback) {
+	setTimeout(function(){callback(mockReviewData)}, 100);
 }
 
-// this function can stay the same even when we
-// are connecting to real API
-function getAndDisplayStatusUpdates() {
-    getRecentStatusUpdates(displayStatusUpdates);
+function displayReviewsTwo(data){
+	const reviewResults = data.recentReviews.map(renderReviewDataTwo);
+	$(".mainReviewDiv").html(reviewResults);
 }
 
-$(function() {
-    getAndDisplayStatusUpdates();
+function getAndDisplayReviewsTwo(){
+	getReviewDataTwo(displayReviewsTwo);
+}
+
+$(function(){
+	getAndDisplayReviewsTwo()
 })
+
+
+

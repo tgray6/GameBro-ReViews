@@ -70,6 +70,7 @@ h2{
   align-items: center;
 }
 
+
 .box{
   justify-content: space-between;
   display: flex;
@@ -86,4 +87,5 @@ h2{
   background-color: red;
   border-radius: 20px;
   font-size: 20px;
+  color: white;
 }

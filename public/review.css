@@ -10,6 +10,11 @@ html {
   height: 100%;
 }
 
+body{
+ padding-bottom: 160px;
+}
+
+
 h2{
   color: white;
   font-size: 50px;
@@ -22,6 +27,10 @@ h2{
 h3{
   color: white;
   font-size: 30px;
+}
+
+h4{
+  color: white;
 }
 
 .navBar{
@@ -62,7 +71,7 @@ h3{
   padding-right: 20px;
 }
 
-.reviewOverview{
+.reviewOverviewTwo{
   margin-top: 175px;
   text-align: center;
 }
@@ -101,13 +110,29 @@ h3{
 
 
 .footer {
-    position: fixed;
+  position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: red;
     color: white;
     text-align: center;
+    height: 160px;
+}
+
+
+.flex-containerReview{
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin-bottom: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -135,10 +160,14 @@ h3{
 /*  margin-bottom: 10px;
   padding-bottom: 20px;*/
   padding-top: 20px;
-/*  padding-bottom: 25px;*/
+  padding-bottom: 25px;
   padding-left: 10px;
   padding-right: 10px;
   background-color: red;
   border-radius: 20px;
   font-size: 15px;
 }
+
+/*.mainReviewDiv{
+  margin-bottom: auto;
+}*/
