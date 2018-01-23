@@ -9,7 +9,8 @@ let mockReviewData = {
 		gameTitle: "Mario Odyssey",
 		gamePlatform: "Nintendo Switch",
 		gameScore: "10",
-		scorePicture: "http://via.placeholder.com/150x150",
+		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
+		// scorePicture: "http://via.placeholder.com/150x150",
 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
 		// reviewDate: Date.now
@@ -35,8 +36,16 @@ let mockReviewData = {
 };
 
 
+
+//renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
+function renderLoginData(result){
+	return `
+	<p class="loggedIn">Logged in as: ${result.author.firstName} ${result.author.lastName.trim()}</p>`
+}
+
+
 //HOMEPAGE DATA (homepage.html)
-function renderReviewData(result){
+function renderHomeData(result){
 	return `
         	<div class="flex-container">
           		<div class="box"> 
@@ -55,44 +64,18 @@ function renderReviewData(result){
 	`
 }
 
-
-
-
-//once API is up and running, this should be the only function we need to change (getReviewData)
-function getReviewData(callback) {
-	setTimeout(function(){callback(mockReviewData)}, 100);
-}
-
-function displayReviews(data){
-	const reviewResults = data.recentReviews.map(renderReviewData);
-	$(".flexParent").html(reviewResults);
-}
-
-function getAndDisplayReviews(){
-	getReviewData(displayReviews);
-}
-
-$(function(){
-	getAndDisplayReviews()
-})
-
-
-
-
-
-
-// CLICKABLE REVIEW DATA PAGE 3(review.html)
-function renderReviewDataTwo(resultTwo){
+//REVIEW DATA (review.html)
+function renderReviewData(result){
 	return `
 	<section role="region">
     <div class="reviewOverviewTwo">
-      <h2 class="postTitle">${resultTwo.postTitle}</h2>
-      <h3 class="gameTitle">${resultTwo.gameTitle}</h3>
-      <h4 class="authorName">Author: ${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</h4>
+      <h2 class="postTitle">${result.postTitle}</h2>
+      <h3 class="gameTitle">${result.gameTitle}</h3>
+      <h4 class="authorName">Author: ${result.author.firstName} ${result.author.lastName.trim()}</h4>
       <div class="flexParent2">
         <div class="flex-container">
           <div class="box">
-          	<p class="postedReview">${resultTwo.postReview}</p>
+          	<p class="postedReview">${result.postReview}</p>
           </div>
         </div>
       </div>
@@ -103,46 +86,43 @@ function renderReviewDataTwo(resultTwo){
 <div class="footer">
   <div class="flex-container2">
           <div class="box2"> 
-            <div> <img class="gameImage2" src= ${resultTwo.gameImage}>
+            <div> <img class="gameImage2" src= ${result.gameImage}>
             </div>
             <div id="postInfo2"> 
-               <p class="authorName">${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</p>
-               <p class="gameTitle">${resultTwo.gameTitle}</p> 
-               <p class="platform">${resultTwo.gamePlatform}</p>
+               <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
+               <p class="gameTitle">${result.gameTitle}</p> 
+               <p class="platform">${result.gamePlatform}</p>
             </div>
-            <div> <img class="scoreImage2" src= ${resultTwo.scorePicture}>
-               <p class="score">${resultTwo.gameScore}</p>
+            <div> <img class="scoreImage2" src= ${result.scorePicture}>
+               <p class="score">${result.gameScore}</p>
             </div>
           </div>
         </div>
 </div>`
 }
 
-//renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
-function renderLoginData(resultThree){
-	return `
-	<p class="loggedIn">Logged in as: ${resultThree.author.firstName} ${resultThree.author.lastName.trim()}</p>`
-}
 
-//once API is up and running, this should be the only function we need to change (getReviewDataTwo)
-function getReviewDataTwo(callback) {
+
+//once API is up and running, this should be the only function we need to change (getReviewData)
+function getReviewData(callback) {
 	setTimeout(function(){callback(mockReviewData)}, 100);
 }
 
-function displayReviewsTwo(data){
-	const reviewResults = data.recentReviews.map(renderReviewDataTwo);
+function displayReviews(data){
 	const loginResults = data.recentReviews.map(renderLoginData);
-	$(".mainReviewDiv").html(reviewResults);
+	const reviewResults = data.recentReviews.map(renderHomeData);
+	const reviewResults2 = data.recentReviews.map(renderReviewData);
 	$(".loginText").html(loginResults);
-
+	$(".flexParent").html(reviewResults);
+	$(".mainReviewDiv").html(reviewResults2);
 }
 
-function getAndDisplayReviewsTwo(){
-	getReviewDataTwo(displayReviewsTwo);
+function getAndDisplayReviews(){
+	getReviewData(displayReviews);
 }
 
 $(function(){
-	getAndDisplayReviewsTwo()
+	getAndDisplayReviews()
 })
 
 

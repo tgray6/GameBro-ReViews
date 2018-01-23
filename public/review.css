@@ -61,6 +61,13 @@ h4{
 
 }
 
+.postButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  top: 6px;
+}
+
 .topNav{
   position: absolute;
   right: 10px;

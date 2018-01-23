@@ -55,6 +55,13 @@ h2{
   padding-right: 20px;
 }
 
+.postButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  top: 6px;
+}
+
 .reviewOverview{
   margin-top: 175px;
   text-align: center;
