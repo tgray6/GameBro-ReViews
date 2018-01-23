@@ -38,6 +38,7 @@ let mockReviewData = {
 
 
 
+
 //HOMEPAGE DATA (homepage.html)
 function renderReviewData(result){
 	return `
@@ -46,7 +47,7 @@ function renderReviewData(result){
             		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}"> 
             		</div>
             		<div class="postInfo"> 
-               			<p class="authorName"> ${result.author.firstName} ${result.author.lastName.trim()}</p>
+               			<p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
             		</div>
@@ -58,7 +59,7 @@ function renderReviewData(result){
 	`
 }
 
-
+//once API is up and running, this should be the only function we need to change (getReviewData)
 function getReviewData(callback) {
 	setTimeout(function(){callback(mockReviewData)}, 100);
 }
@@ -80,6 +81,7 @@ $(function(){
 
 
 
+
 // CLICKABLE REVIEW DATA PAGE 3(review.html)
 function renderReviewDataTwo(resultTwo){
 	return `
@@ -87,7 +89,7 @@ function renderReviewDataTwo(resultTwo){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${resultTwo.postTitle}</h2>
       <h3 class="gameTitle">${resultTwo.gameTitle}</h3>
-      <h4 class="authorName">${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</h4>
+      <h4 class="authorName">Author: ${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</h4>
       <div class="flexParent2">
         <div class="flex-container">
           <div class="box">
@@ -117,6 +119,7 @@ function renderReviewDataTwo(resultTwo){
 </div>`
 }
 
+//once API is up and running, this should be the only function we need to change (getReviewDataTwo)
 function getReviewDataTwo(callback) {
 	setTimeout(function(){callback(mockReviewData)}, 100);
 }
@@ -133,6 +136,13 @@ function getAndDisplayReviewsTwo(){
 $(function(){
 	getAndDisplayReviewsTwo()
 })
+
+
+
+
+
+
+
 
 
 
