@@ -13,15 +13,15 @@ const {app, runServer, closeServer} = require('../server');
 
 //HTML ENDPOINT TESTS
 describe('login endpoint', function() {
-	it('should return a 200 status code and  login html', function() {
-		return chai.request(app)
-		.get('/index')
-		.then(function(res) {
-		res.should.have.status(200);
-		res.should.be.html;
-		})
-	});
-});
+			it('should return a 200 status code and  login html', function() {
+				return chai.request(app)
+				.get('/')
+				.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.html;
+				})
+			});
+		});
 
 describe('homepage endpoint', function() {
 	it('should return a 200 status code and homepage html', function() {
