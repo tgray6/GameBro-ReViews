@@ -13,14 +13,42 @@
 <main role="main">
 
   <div class="navBar">
-  	  <button class="backButton">Back To Homepage</button>
-      <a class="logo"><h1>ReViewer</h1></a>
+  	  <a href="homepage.html"><button class="backButton">Back To Homepage</button></a>
+      <a class="logo"><h1>GameBro ReViews</h1></a>
     <nav role="navigation" class="topNav">
       <p class="loggedIn">Logged in as: Tyler Gray</p>
-      <a href="" class="navLinks">Post</a>
-      <a href="" class="navLinks">Edit</a>
+      <button class="postButton" data-modal-trigger="form">Post/Edit Review</button>
     </nav>
   </div>
+
+
+  <div class="modalParent">
+<section data-modal="form" class="modal-wrapper">
+  <article class="modal-body">
+    <header>
+      <h2>Post/Edit A Review</h2>
+    </header>
+    <div class="modal-main">
+      <div class="formDiv">
+        <form action="#" class="postEdit">
+          <input required type="text" placeholder="Enter a Post Title" id="postTitle">
+          <input required type="text" placeholder="Enter a Game Title" id="postGameTitle">
+          <input required type="text" placeholder="Enter a Platform" id="postPlatform">
+          <input required type="number" min="1" max="10" placeholder="Enter a Score (1-10)" id="postScore">
+          <div class="reviewArea">
+          <textarea required cols="100" rows="20" name="comment"></textarea>
+          </div>
+          <div formButtons>
+            <button type="submit" id="submitButton">Submit</button>
+            <button class="close">close</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </article>
+</section>
+</div>
 
   <div class="mainReviewDiv">
 <!--   <section role="region">

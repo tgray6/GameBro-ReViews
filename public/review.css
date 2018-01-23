@@ -4,14 +4,15 @@
           box-sizing: border-box;
 }
 
-html {
+/*html {
   background: url("https://4kwallpapers.co/wp-content/uploads/2015/07/Dark-Grey-Red-Material-Design-4K-Wallpaper.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-}
+}*/
 
 body{
  padding-bottom: 160px;
+ background-color: #2b2525;
 }
 
 
@@ -38,7 +39,7 @@ h4{
   top: 0;
   left: 0;
   right: 0;
-  background-color: red;
+  background-color: #d60000;
   border-bottom: 1px solid black;
   padding-bottom: 40px;
 }
@@ -102,10 +103,11 @@ h4{
   padding-bottom: 25px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: red;
+  background-color: #d60000;
   border-radius: 20px;
   font-size: 20px;
   color: white;
+  border: 1px solid black;
 }
 
 
@@ -114,7 +116,7 @@ h4{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: red;
+    background-color: #d60000;
     color: white;
     text-align: center;
     height: 160px;
@@ -163,7 +165,7 @@ h4{
   padding-bottom: 25px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: red;
+  background-color: #d60000;
   border-radius: 20px;
   font-size: 15px;
 }
@@ -171,3 +173,66 @@ h4{
 /*.mainReviewDiv{
   margin-bottom: auto;
 }*/
+
+.hidden{
+  display: none;
+}
+
+.modalParent{
+  text-align: center;
+}
+
+
+.modal-wrapper {
+  display: none;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.modal-wrapper.is-open {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba( 165, 42, 42, 0.9 );
+  overflow-y:scroll;
+}
+
+.modal-body {
+  animation: pop 0.5s ease;
+  width: 100%;
+}
+
+header {
+  position: relative;
+}
+
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  90% {
+    transform: scale(1.02);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reviewArea{
+  margin-top: 20px;
+}
+
+#postScore{
+  width: 199px;
+}

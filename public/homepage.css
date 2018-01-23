@@ -4,15 +4,19 @@
           box-sizing: border-box;
 }
 
-html {
-  background: url("https://4kwallpapers.co/wp-content/uploads/2015/07/Dark-Grey-Red-Material-Design-4K-Wallpaper.jpg") no-repeat center center fixed;
+/*html {
+  background: url("http://www.flowersinspace.com/img/red-and-black-wallpaper/_fullsize/smart-red-abstract-wallpaper-x-full-hd-red-black-wallpaper-and-download-black_red-and-black-wallpaper.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
+}*/
+
+body{
+  background-color: #2b2525;
 }
 
 h2{
   color: white;
-  font-size: 50px;
+  font-size: 30px;
 }
 
 .loggedIn{
@@ -25,7 +29,7 @@ h2{
   left: 0;
   right: 0;
   padding: 34.5px;
-  background-color: red;
+  background-color: #d60000;
   border-bottom: 1px solid black;
 }
 
@@ -84,8 +88,79 @@ h2{
   padding-bottom: 25px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: red;
+  background-color: #d60000;
   border-radius: 20px;
   font-size: 20px;
   color: white;
+  border: 1px solid black;
+}
+
+.hidden{
+  display: none;
+}
+
+.modalParent{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+.modal-wrapper {
+  display: none;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.modal-wrapper.is-open {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba( 165, 42, 42, 0.9 );
+  overflow-y:scroll;
+
+}
+
+.modal-body {
+  animation: pop 0.5s ease;
+  width: 100%;
+}
+
+header {
+  position: relative;
+}
+
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  90% {
+    transform: scale(1.02);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reviewArea{
+  margin-top: 20px;
+}
+
+.close{
+
+}
+
+#postScore{
+  width: 199px;
 }

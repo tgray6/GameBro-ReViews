@@ -4,16 +4,17 @@
           box-sizing: border-box;
 }
 
-html {
-  background: url("https://4kwallpapers.co/wp-content/uploads/2015/07/Dark-Grey-Red-Material-Design-4K-Wallpaper.jpg") no-repeat center center fixed;
+/*html {
+  background: url("http://wallpaperesque.com/wp-content/uploads/plixpapers1504/mega_man_wallpaper_background_47997.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
   overflow: hidden;
-}
+}*/
 
 body{
 	margin-left: auto;
 	margin-right: auto;
+  background-color: #2b2525;
 }
 
 
@@ -29,6 +30,10 @@ body{
 	font-size: 20px;
 	margin-top: 50%;
 	/*align-items: center;*/
+}
+
+.loginForm{
+  margin-top: 20px;
 }
 
 .flexContainer{
