@@ -10,9 +10,7 @@ let mockReviewData = {
 		gamePlatform: "Nintendo Switch",
 		gameScore: "10",
 		scorePicture: "http://via.placeholder.com/150x150",
-		scorePicture2: "http://via.placeholder.com/100x100",
 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
-		gameImage2: "http://via.placeholder.com/100x100",
 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
 		// reviewDate: Date.now
 	},
@@ -37,8 +35,6 @@ let mockReviewData = {
 };
 
 
-
-
 //HOMEPAGE DATA (homepage.html)
 function renderReviewData(result){
 	return `
@@ -58,6 +54,9 @@ function renderReviewData(result){
         	</div>
 	`
 }
+
+
+
 
 //once API is up and running, this should be the only function we need to change (getReviewData)
 function getReviewData(callback) {
@@ -104,19 +103,25 @@ function renderReviewDataTwo(resultTwo){
 <div class="footer">
   <div class="flex-container2">
           <div class="box2"> 
-            <div class="gameImage2"> <img src= ${resultTwo.gameImage2}> 
+            <div> <img class="gameImage2" src= ${resultTwo.gameImage}>
             </div>
             <div id="postInfo2"> 
                <p class="authorName">${resultTwo.author.firstName} ${resultTwo.author.lastName.trim()}</p>
                <p class="gameTitle">${resultTwo.gameTitle}</p> 
                <p class="platform">${resultTwo.gamePlatform}</p>
             </div>
-            <div id="scoreInfo2"> <img src= ${resultTwo.scorePicture2}>
+            <div> <img class="scoreImage2" src= ${resultTwo.scorePicture}>
                <p class="score">${resultTwo.gameScore}</p>
             </div>
           </div>
         </div>
 </div>`
+}
+
+//renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
+function renderLoginData(resultThree){
+	return `
+	<p class="loggedIn">Logged in as: ${resultThree.author.firstName} ${resultThree.author.lastName.trim()}</p>`
 }
 
 //once API is up and running, this should be the only function we need to change (getReviewDataTwo)
@@ -126,7 +131,10 @@ function getReviewDataTwo(callback) {
 
 function displayReviewsTwo(data){
 	const reviewResults = data.recentReviews.map(renderReviewDataTwo);
+	const loginResults = data.recentReviews.map(renderLoginData);
 	$(".mainReviewDiv").html(reviewResults);
+	$(".loginText").html(loginResults);
+
 }
 
 function getAndDisplayReviewsTwo(){
@@ -136,6 +144,8 @@ function getAndDisplayReviewsTwo(){
 $(function(){
 	getAndDisplayReviewsTwo()
 })
+
+
 
 
 
