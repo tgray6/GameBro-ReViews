@@ -29,11 +29,15 @@ body{
 .formDiv{
 	font-size: 20px;
 	margin-top: 50%;
-	/*align-items: center;*/
+	text-align: center;
 }
 
 .loginForm{
   margin-top: 20px;
+}
+
+.indexButton{
+  margin-top: 5px;
 }
 
 .flexContainer{
