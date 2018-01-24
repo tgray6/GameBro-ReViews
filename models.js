@@ -22,7 +22,7 @@ reviewSchema.virtual('authorName').get(function() {
 
 reviewSchema.methods.serialize = function() {
 	return {
-		this._id,
+		id: this._id,
 		author: this.authorName,
 		postTitle: this.postTitle,
 		gameTitle: this.gameTitle,
