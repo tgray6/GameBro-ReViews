@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
-
 const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-router.get('/index', (req, res) => {
+router.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
