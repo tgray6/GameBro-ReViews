@@ -22,21 +22,18 @@ let mockReviewData = {
 
 
 	// {
-	// author:{
-	// 		firstName: "Josh",
-	// 		lastName: "Gore"
+	// 	"author":{
+	// 		"firstName": "Josh",
+	// 		"lastName": "Gore"
 	// 	},
-	// 	postTitle: "Best Game Ever",
-	// 	gameTitle: "Super Metroid",
-	// 	gamePlatform: "Super NES",
-	// 	gameScore: "9",
-	// 	scorePicture: "http://via.placeholder.com/150x150",
-	// 	scorePicture2: "http://via.placeholder.com/100x100",
-	// 	gameImage: "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
-	// 	gameImage2: "http://via.placeholder.com/100x100",
-	// 	postReview: "Super Metroid displays a clear understanding of what makes Metroid tick, and is neck and neck for top billing among its esteemed predecessors."
-	// 	// reviewDate: Date.now
-	// }
+	// 	"postTitle": "Yay, Metroid",
+	// 	"gameTitle": "Super Metroid",
+	// 	"gamePlatform": "Super NES",
+	// 	"gameScore": "9",
+	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
+	// 	"postReview": "Super Metroid was really fun."
+
+	// },
 	]
 };
 
