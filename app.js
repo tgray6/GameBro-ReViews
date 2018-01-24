@@ -9,12 +9,17 @@ let mockReviewData = {
 		gameTitle: "Mario Odyssey",
 		gamePlatform: "Nintendo Switch",
 		gameScore: "10",
-		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
-		// scorePicture: "http://via.placeholder.com/150x150",
 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
-		// reviewDate: Date.now
 	},
+
+		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
+		// scorePicture: "http://via.placeholder.com/150x150",
+		// reviewDate: Date.now
+
+
+
+
 
 	// {
 	// author:{
