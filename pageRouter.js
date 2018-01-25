@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-router.get('/', (req, res) => {
+router.get('/gamebro', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 

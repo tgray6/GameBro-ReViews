@@ -35,6 +35,6 @@ reviewSchema.methods.serialize = function() {
 };
 
 //remember, behind the scenes, the database will be db.postreviews., all lowercase and plural
-const PostReview = mongoose.model('PostReview', reviewSchema);
+const PostReview = mongoose.model('reviews', reviewSchema);
 
 module.exports = {PostReview};
