@@ -4,10 +4,12 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-const should = chai.should();
-chai.use(chaiHttp);
 const {app, runServer, closeServer} = require('../server');
+const should = chai.should();
+
+chai.use(chaiHttp);
+mongoose.Promise = global.Promise;
+
 
 
 
@@ -21,7 +23,7 @@ describe('login endpoint', function() {
 				res.should.be.html;
 				})
 			});
-		});
+});
 
 describe('homepage endpoint', function() {
 	it('should return a 200 status code and homepage html', function() {
@@ -45,3 +47,4 @@ describe('review endpoint', function() {
 	});
 });
 //END HTML TESTS
+
