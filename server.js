@@ -22,15 +22,13 @@ app.use(pageRouter);
 
 
 
-
-
 app.get('/reviews', (req, res) =>{
 	PostReview
 		.find()
 		.then(reviews => {
 			res.json({
 				reviews: reviews.map(
-					(reviews) => reviews.serialize())
+					(reviews) => reviews.sexify())
 			});
 		})
 		.catch(err =>{
@@ -41,7 +39,6 @@ app.get('/reviews', (req, res) =>{
 
 
 app.post('/reviews', (req, res) => {
-	// const requiredFields = ["author", "postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
 	PostReview
 		.create({
 			author: req.body.author,
@@ -52,7 +49,7 @@ app.post('/reviews', (req, res) => {
 			gameImage: req.body.gameImage,
 			postReview: req.body.postReview
 		})
-		.then(reviews => res.status(201).json(reviews.serialize()))
+		.then(reviews => res.status(201).json(reviews.sexify()))
 });
 
 
@@ -117,14 +114,4 @@ module.exports = { app, runServer, closeServer };
 
 
 
-
-
-
-
-
-
-
-
-
-
-module.exports = {app};
+// module.exports = {app};

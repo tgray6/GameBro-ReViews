@@ -20,7 +20,7 @@ reviewSchema.virtual('authorName').get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
-reviewSchema.methods.serialize = function() {
+reviewSchema.methods.sexify = function() {
 	return {
 		id: this._id,
 		author: this.authorName,
@@ -34,7 +34,7 @@ reviewSchema.methods.serialize = function() {
 	};
 };
 
-//remember, behind the scenes, the database will be db.postreviews., all lowercase and plural
+//remember, behind the scenes, the database will be db.reviews., all lowercase and plural
 const PostReview = mongoose.model('reviews', reviewSchema);
 
 module.exports = {PostReview};
