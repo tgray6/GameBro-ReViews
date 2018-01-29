@@ -138,8 +138,6 @@ $(function(){
 
 
 
-
-
 //modal form
 const modalService = () => {
   const d = document;
