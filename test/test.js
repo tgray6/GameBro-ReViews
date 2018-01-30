@@ -145,12 +145,9 @@ describe ('GET endpoint at /reviews', function() {
 			res.should.have.status(200);
 			res.body.should.have.property('reviews');
 			res.body.should.be.a('object');
-			// res.body.should.have.length.of.at.least(1);
-			// return PostReview.count();
+			res.body.reviews.should.have.lengthOf(3);
+			return PostReview.count();
 		})
-		// .then(function(count){
-		// 	res.body.should.have.lengthOf(count);
-		// });
 	});
 
 	it('should return all reviews with the right fields', function() {
@@ -160,25 +157,25 @@ describe ('GET endpoint at /reviews', function() {
 			.then(function(res){
 				res.should.have.status(200);
 				res.should.be.json;
-				// res.body.should.have.length.of.at.least(1);
+				res.body.reviews.should.have.length.of.at.least(1);
 
-				res.body.forEach(function(review){
+				res.body.reviews.forEach(function(review){
 					review.should.be.a('object');
 					review.should.include.keys(
 						'id', 'author', 'postTitle', 'gameTitle', 'gamePlatform', 'gameScore', 'gameImage', 'postReview', 'created');
 				});
-				resReview = res.body[0];
+				resReview = res.body.reviews[0];
 				return PostReview.findById(resReview.id);
 			})
 			.then(function(review){
 				resReview.id.should.equal(review.id);
-				resReview.author.should.equal(review.author);
+				resReview.author.should.equal(review.authorName);
 				resReview.postTitle.should.equal(review.postTitle);
 				resReview.gamePlatform.should.equal(review.gamePlatform);
-				resReview.gameScore.should.equal(review.gamePlatform);
+				resReview.gameScore.should.equal(review.gameScore);
 				resReview.gameImage.should.equal(review.gameImage);
-				resReview.postReview.should.equal(review.gameReview);
-				resReview.created.should.equal(review.created);
+				resReview.postReview.should.equal(review.postReview);
+				resReview.created.should.equal(review.created.toJSON());
 			});
 	});
 });
