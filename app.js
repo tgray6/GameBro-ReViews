@@ -16,26 +16,27 @@ let mockReviewData = {
 		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
 		// scorePicture: "http://via.placeholder.com/150x150",
 		// reviewDate: Date.now
-
-
-
-
-
-	// {
-	// 	"author":{
-	// 		"firstName": "Josh",
-	// 		"lastName": "Gore"
-	// 	},
-	// 	"postTitle": "Yay, Metroid",
-	// 	"gameTitle": "Super Metroid",
-	// 	"gamePlatform": "Super NES",
-	// 	"gameScore": "9",
-	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
-	// 	"postReview": "Super Metroid was really fun."
-
-	// },
-	]
+    ]
 };
+
+
+
+
+// 	// {
+// 	// 	"author":{
+// 	// 		"firstName": "Josh",
+// 	// 		"lastName": "Gore"
+// 	// 	},
+// 	// 	"postTitle": "Yay, Metroid",
+// 	// 	"gameTitle": "Super Metroid",
+// 	// 	"gamePlatform": "Super NES",
+// 	// 	"gameScore": "9",
+// 	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
+// 	// 	"postReview": "Super Metroid was really fun."
+
+// 	// },
+// 	]
+// };
 
 
 
@@ -105,15 +106,104 @@ function renderReviewData(result){
 
 
 
+
+
+
 //once API is up and running, this should be the only function we need to change (getReviewData)
-function getReviewData(callback) {
-	setTimeout(function(){callback(mockReviewData)}, 100);
+
+
+// function getReviewData(callback) {
+//  setTimeout(function(){callback(mockReviewData)}, 100);
+// }
+
+// function displayReviews(data){
+//   const loginResults = data.recentReviews.map(renderLoginData);
+//   const reviewResults = data.recentReviews.map(renderHomeData);
+//   const reviewResults2 = data.recentReviews.map(renderReviewData);
+//   $(".loginText").html(loginResults);
+//   $(".flexParent").html(reviewResults);
+//   $(".mainReviewDiv").html(reviewResults2);
+// }
+
+// function getAndDisplayReviews(){
+//   getReviewData(displayReviews);
+// }
+
+// $(function(){
+//   getAndDisplayReviews()
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let mongoURL = 'mongodb://localhost/GameBro';
+
+function getReviewData(postTitle, gameTitle, gamePlatform, gameScore, gameImage, postReview, callback) {
+  const settings = {
+  data: {
+    // author: `"${author}"`,
+    postTitle: `"${postTitle}"`,
+    gameTitle: `"${gameTitle}"`,
+    gamePlatform: `"${gamePlatform}"`,
+    gameScore: `"${gameScore}"`,
+    gameImage: `"${gameImage}"`,
+    postReview: `"${postReview}"`,
+    },
+    dataType: "json",
+    // jsonp: "json_callback",
+    // crossDomain: true,
+    type: 'POST',
+    url: mongoURL,
+    success: callback
+  };
+  $.ajax(settings);
 }
 
+
+
+
+
 function displayReviews(data){
-	const loginResults = data.recentReviews.map(renderLoginData);
-	const reviewResults = data.recentReviews.map(renderHomeData);
-	const reviewResults2 = data.recentReviews.map(renderReviewData);
+	const loginResults = data.reviews.map(renderLoginData);
+	const reviewResults = data.reviews.map(renderHomeData);
+	const reviewResults2 = data.reviews.map(renderReviewData);
 	$(".loginText").html(loginResults);
 	$(".flexParent").html(reviewResults);
 	$(".mainReviewDiv").html(reviewResults2);
@@ -124,8 +214,111 @@ function getAndDisplayReviews(){
 }
 
 $(function(){
-	getAndDisplayReviews()
+	getAndDisplayReviews();
 })
+
+
+
+
+
+function watchSubmit() {
+  $('.postEdit').submit(function(event) {
+    event.preventDefault();
+
+    //postTitle FORM
+    let postTitle = $(event.currentTarget).find('#postTitle');
+    let postValue = postTitle.val();
+    postTitle.val("");
+
+    //gameTitle FORM
+    let gameTitle = $(event.currentTarget).find('#postGameTitle');
+    let gameValue = gameTitle.val();
+    gameTitle.val("");
+
+    //gamePlatform FORM
+    let gamePlatform = $(event.currentTarget).find('#postGamePlatform');
+    let platformValue = gamePlatform.val();
+    gamePlatform.val("");
+
+    //gameScore FORM
+    let gameScore = $(event.currentTarget).find('#postScore');
+    let scoreValue = gameScore.val();
+    gameScore.val("");
+
+    //gameImage FORM
+    let gameImage = $(event.currentTarget).find('#postGameURL');
+    let imageValue = gameImage.val();
+    gameImage.val("");
+
+    //postReview FORM
+    let postReview = $(event.currentTarget).find('#gameReview');
+    let reviewValue = postReview.val();
+    postReview.val("");
+
+
+    getReviewData(postValue, gameValue, platformValue, scoreValue, imageValue, reviewValue, displayReviews);
+  });
+}
+$(watchSubmit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -133,8 +133,7 @@ describe('Review API Resource', function() {
   });
 
 
-//LETS DO THE GET TEST
-
+//GET TEST
 describe ('GET endpoint at /reviews', function() {
 	it('should return existing reviews', function(){
 	let res;
@@ -179,5 +178,43 @@ describe ('GET endpoint at /reviews', function() {
 			});
 	});
 });
+
+
+//PUT TEST
+describe('POST endpoint', function(){
+	it('should add a new review post with proper keys', function(){
+		const newPost = generatePostData();
+
+		return chai.request(app)
+			.post('/reviews')
+			.send(newPost)
+			.then(function(res) {
+				res.should.have.status(201);
+				res.should.be.json;
+				res.body.should.be.a('object');
+				res.body.should.include.keys('id', 'author', 'postTitle', 'gameTitle', 'gamePlatform', 'gameScore', 'gameImage', 'postReview', 'created');
+				res.body.id.should.not.be.null;
+				res.body.author.should.equal(`${newPost.author.firstName} ${newPost.author.lastName}`);
+				res.body.postTitle.should.equal(newPost.postTitle);
+				res.body.gamePlatform.should.equal(newPost.gamePlatform);
+				res.body.gameScore.should.equal(newPost.gameScore);
+				res.body.gameImage.should.equal(newPost.gameImage);
+				res.body.postReview.should.equal(newPost.postReview);
+				res.body.created.should.not.be.null;
+				return PostReview.findById(res.body.id);
+			})
+			.then(function(review){
+				review.author.firstName.should.equal(newPost.author.firstName);
+				review.author.lastName.should.equal(newPost.author.lastName);
+				review.postTitle.should.equal(newPost.postTitle);
+				review.gamePlatform.should.equal(newPost.gamePlatform);
+				review.gameScore.should.equal(newPost.gameScore);
+				review.gameImage.should.equal(newPost.gameImage);
+				review.postReview.should.equal(newPost.postReview);
+			});
+	});
+})
+
+
 
 });

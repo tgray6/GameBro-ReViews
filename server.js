@@ -28,7 +28,7 @@ app.get('/reviews', (req, res) =>{
 		.then(reviews => {
 			res.json({
 				reviews: reviews.map(
-					(reviews) => reviews.sexify())
+					(reviews) => reviews.serialize())
 			});
 		})
 		.catch(err =>{
@@ -49,7 +49,7 @@ app.post('/reviews', (req, res) => {
 			gameImage: req.body.gameImage,
 			postReview: req.body.postReview
 		})
-		.then(reviews => res.status(201).json(reviews.sexify()))
+		.then(reviews => res.status(201).json(reviews.serialize()))
 });
 
 

@@ -20,7 +20,7 @@ reviewSchema.virtual('authorName').get(function() {
   return `${this.author.firstName} ${this.author.lastName}`.trim();
 });
 
-reviewSchema.methods.sexify = function() {
+reviewSchema.methods.serialize = function() {
 	return {
 		id: this._id,
 		author: this.authorName,
