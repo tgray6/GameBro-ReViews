@@ -1,49 +1,49 @@
-let mockReviewData = {
-	recentReviews: [
-	{
-		author:{
-			firstName: "Tyler",
-			lastName: "Gray"
-		},
-		postTitle: "Best Game Ever",
-		gameTitle: "Mario Odyssey",
-		gamePlatform: "Nintendo Switch",
-		gameScore: "10",
-		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
-		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
-	},
+// let mockReviewData = {
+// 	recentReviews: [
+// 	{
+// 		author:{
+// 			firstName: "Tyler",
+// 			lastName: "Gray"
+// 		},
+// 		postTitle: "Best Game Ever",
+// 		gameTitle: "Mario Odyssey",
+// 		gamePlatform: "Nintendo Switch",
+// 		gameScore: "10",
+// 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
+// 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
+// 	},
 
-		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
-		// scorePicture: "http://via.placeholder.com/150x150",
-		// reviewDate: Date.now
-    ]
-};
-
-
-
-
-// 	// {
-// 	// 	"author":{
-// 	// 		"firstName": "Josh",
-// 	// 		"lastName": "Gore"
-// 	// 	},
-// 	// 	"postTitle": "Yay, Metroid",
-// 	// 	"gameTitle": "Super Metroid",
-// 	// 	"gamePlatform": "Super NES",
-// 	// 	"gameScore": "9",
-// 	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
-// 	// 	"postReview": "Super Metroid was really fun."
-
-// 	// },
-// 	]
+// 		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
+// 		// scorePicture: "http://via.placeholder.com/150x150",
+// 		// reviewDate: Date.now
+//     ]
 // };
+
+
+// // <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
+
+// // 	// {
+// // 	// 	"author":{
+// // 	// 		"firstName": "Josh",
+// // 	// 		"lastName": "Gore"
+// // 	// 	},
+// // 	// 	"postTitle": "Yay, Metroid",
+// // 	// 	"gameTitle": "Super Metroid",
+// // 	// 	"gamePlatform": "Super NES",
+// // 	// 	"gameScore": "9",
+// // 	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
+// // 	// 	"postReview": "Super Metroid was really fun."
+
+// // 	// },
+// // 	]
+// // };
 
 
 
 //renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
 function renderLoginData(result){
 	return `
-	<p class="loggedIn">Logged in as: ${result.author.firstName} ${result.author.lastName.trim()}</p>`
+	<p class="loggedIn">Logged in as: ${result.author.firstName} ${result.author.lastName}</p>`
 }
 
 
@@ -55,7 +55,7 @@ function renderHomeData(result){
             		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}"> 
             		</div>
             		<div class="postInfo"> 
-               			<p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
+               			
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
             		</div>
@@ -66,6 +66,9 @@ function renderHomeData(result){
         	</div>
 	`
 }
+      // <h4 class="authorName">Author: ${result.author.firstName} ${result.author.lastName.trim()}</h4>
+
+      // <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
 
 //REVIEW DATA (review.html)
 function renderReviewData(result){
@@ -74,7 +77,7 @@ function renderReviewData(result){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${result.postTitle}</h2>
       <h3 class="gameTitle">${result.gameTitle}</h3>
-      <h4 class="authorName">Author: ${result.author.firstName} ${result.author.lastName.trim()}</h4>
+
       <div class="flexParent2">
         <div class="flex-container">
           <div class="box">
@@ -92,7 +95,7 @@ function renderReviewData(result){
             <div> <img class="gameImage2" src= ${result.gameImage}>
             </div>
             <div id="postInfo2"> 
-               <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
+               
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
             </div>
@@ -173,12 +176,12 @@ function renderReviewData(result){
 
 
 
-let apiURL = 'http://localhost:8080/reviews';
+let apiURL = '/reviews';
 
 function getReviewData(callback) {
   const settings = {
   // data: {
-  //   // author: `"${author}"`,
+  //   author: `"${author}"`,
   //   postTitle: `"${postTitle}"`,
   //   gameTitle: `"${gameTitle}"`,
   //   gamePlatform: `"${gamePlatform}"`,
@@ -221,45 +224,45 @@ $(function(){
 
 
 
-function watchSubmit() {
-  $('.postEdit').submit(function(event) {
-    event.preventDefault();
+// function watchSubmit() {
+//   $('.postEdit').submit(function(event) {
+//     event.preventDefault();
 
-    //postTitle FORM
-    let postTitle = $(event.currentTarget).find('#postTitle');
-    let postValue = postTitle.val();
-    postTitle.val("");
+//     //postTitle FORM
+//     let postTitle = $(event.currentTarget).find('#postTitle');
+//     let postValue = postTitle.val();
+//     postTitle.val("");
 
-    //gameTitle FORM
-    let gameTitle = $(event.currentTarget).find('#postGameTitle');
-    let gameValue = gameTitle.val();
-    gameTitle.val("");
+//     //gameTitle FORM
+//     let gameTitle = $(event.currentTarget).find('#postGameTitle');
+//     let gameValue = gameTitle.val();
+//     gameTitle.val("");
 
-    //gamePlatform FORM
-    let gamePlatform = $(event.currentTarget).find('#postGamePlatform');
-    let platformValue = gamePlatform.val();
-    gamePlatform.val("");
+//     //gamePlatform FORM
+//     let gamePlatform = $(event.currentTarget).find('#postGamePlatform');
+//     let platformValue = gamePlatform.val();
+//     gamePlatform.val("");
 
-    //gameScore FORM
-    let gameScore = $(event.currentTarget).find('#postScore');
-    let scoreValue = gameScore.val();
-    gameScore.val("");
+//     //gameScore FORM
+//     let gameScore = $(event.currentTarget).find('#postScore');
+//     let scoreValue = gameScore.val();
+//     gameScore.val("");
 
-    //gameImage FORM
-    let gameImage = $(event.currentTarget).find('#postGameURL');
-    let imageValue = gameImage.val();
-    gameImage.val("");
+//     //gameImage FORM
+//     let gameImage = $(event.currentTarget).find('#postGameURL');
+//     let imageValue = gameImage.val();
+//     gameImage.val("");
 
-    //postReview FORM
-    let postReview = $(event.currentTarget).find('#gameReview');
-    let reviewValue = postReview.val();
-    postReview.val("");
+//     //postReview FORM
+//     let postReview = $(event.currentTarget).find('#gameReview');
+//     let reviewValue = postReview.val();
+//     postReview.val("");
 
 
-    getReviewData(postValue, gameValue, platformValue, scoreValue, imageValue, reviewValue, displayReviews);
-  });
-}
-$(watchSubmit);
+//     getReviewData(postValue, gameValue, platformValue, scoreValue, imageValue, reviewValue, displayReviews);
+//   });
+// }
+// $(watchSubmit);
 
 
 

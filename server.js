@@ -10,12 +10,13 @@ mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
 const { PostReview } = require('./models');
-const pageRouter = require('./pageRouter')
+// const pageRouter = require('./pageRouter')
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(express.static('public'));
 app.use(morgan('common'));
-app.use(pageRouter);
+// app.use(pageRouter);
 // app.listen(process.env.PORT || 8080);
 
 
@@ -39,6 +40,7 @@ app.get('/reviews', (req, res) =>{
 
 
 app.post('/reviews', (req, res) => {
+  console.log(req.body)
 	PostReview
 		.create({
 			author: req.body.author,
