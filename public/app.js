@@ -40,6 +40,7 @@
 
 
 
+
 //renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
 function renderLoginData(result){
 	return `
@@ -59,13 +60,16 @@ function renderHomeData(result){
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
             		</div>
-            		<div class="scoreInfo"> <img class="scorePicture" src= "${result.scorePicture}">
-               		<p class="score">${result.gameScore}</p>
-            		</div>
+            		  <div>
+               		 <p class="score">${result.gameScore}</p>
+            		  </div>
           		</div>
         	</div>
 	`
 }
+//REMOVED FROM DIV ON LINE 63, PICTURES CAUSING TOO MANY PROBLEMS AND SLOWING ME DOWN
+// class="scoreInfo"> <img class="scorePicture" src= "">
+
       // <h4 class="authorName">Author: ${result.author.firstName} ${result.author.lastName.trim()}</h4>
 
       // <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
@@ -80,7 +84,7 @@ function renderReviewData(result){
 
       <div class="flexParent2">
         <div class="flex-container">
-          <div class="box">
+          <div class="reviewBox">
           	<p class="postedReview">${result.postReview}</p>
           </div>
         </div>
@@ -99,78 +103,16 @@ function renderReviewData(result){
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
             </div>
-            <div> <img class="scoreImage2" src= ${result.scorePicture}>
-               <p class="score">${result.gameScore}</p>
-            </div>
+              <div>
+                <p class="score">${result.gameScore}</p>
+              </div>
           </div>
         </div>
 </div>`
 }
 
-
-
-
-
-
-//once API is up and running, this should be the only function we need to change (getReviewData)
-
-
-// function getReviewData(callback) {
-//  setTimeout(function(){callback(mockReviewData)}, 100);
-// }
-
-// function displayReviews(data){
-//   const loginResults = data.recentReviews.map(renderLoginData);
-//   const reviewResults = data.recentReviews.map(renderHomeData);
-//   const reviewResults2 = data.recentReviews.map(renderReviewData);
-//   $(".loginText").html(loginResults);
-//   $(".flexParent").html(reviewResults);
-//   $(".mainReviewDiv").html(reviewResults2);
-// }
-
-// function getAndDisplayReviews(){
-//   getReviewData(displayReviews);
-// }
-
-// $(function(){
-//   getAndDisplayReviews()
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//REMOVED FROM LINE 106, PICTURES CAUSING TOO MANY PROBLEMS AND SLOWING ME DOWN
+// <div> <img class="scoreImage2" src= "">
 
 
 
@@ -204,12 +146,13 @@ function getReviewData(callback) {
 
 function displayReviews(data){
   console.log(data);
-	const loginResults = data.reviews.map(renderLoginData);
+	// const loginResults = data.reviews.map(renderLoginData);
 	const reviewResults = data.reviews.map(renderHomeData);
 	const reviewResults2 = data.reviews.map(renderReviewData);
-	$(".loginText").html(loginResults);
+	// $(".loginText").html(loginResults);
 	$(".flexParent").html(reviewResults);
 	$(".mainReviewDiv").html(reviewResults2);
+  // renderScoreImage();
 }
 
 function getAndDisplayReviews(){
@@ -219,6 +162,124 @@ function getAndDisplayReviews(){
 $(function(){
 	getAndDisplayReviews();
 })
+
+
+
+
+// function renderScoreImage(){
+//   let score = $('.score').val();
+//   if (score = 10){
+//     $('.scorePicture').attr("src", "http://www.clker.com/cliparts/E/J/e/s/C/8/red-rounded-square-with-number-10-hi.png");
+//   }
+//   else if (score = 9){
+//     $('.scorePicture').attr("src", "http://www.clker.com/cliparts/R/t/I/J/5/M/number-nine-in-red-hi.png");
+//   }
+// };
+
+
+
+
+
+
+
+
+// function scoreTest(){
+//   let score = $('.score').text();
+//   console.log (score);
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//once API is up and running, this should be the only function we need to change (getReviewData)
+
+
+// function getReviewData(callback) {
+//  setTimeout(function(){callback(mockReviewData)}, 100);
+// }
+
+// function displayReviews(data){
+//   const loginResults = data.recentReviews.map(renderLoginData);
+//   const reviewResults = data.recentReviews.map(renderHomeData);
+//   const reviewResults2 = data.recentReviews.map(renderReviewData);
+//   $(".loginText").html(loginResults);
+//   $(".flexParent").html(reviewResults);
+//   $(".mainReviewDiv").html(reviewResults2);
+// }
+
+// function getAndDisplayReviews(){
+//   getReviewData(displayReviews);
+// }
+
+// $(function(){
+//   getAndDisplayReviews()
+// })
 
 
 
@@ -263,71 +324,6 @@ $(function(){
 //   });
 // }
 // $(watchSubmit);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

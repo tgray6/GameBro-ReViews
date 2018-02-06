@@ -12,13 +12,59 @@
 <body>
 <main role="main">
 
+
+
+
+
+
+<div id="loginDivMain" class="hidden">
+  <div class="loginflexContainer">
+
+  <section role="region">
+    <div class="loginDiv">
+      <header role="banner">
+        <h1 class="mainheader">GameBro ReViews</h1>
+      </header>
+
+      <form action="#" class="createForm">
+        <div>
+          <input required type="text" placeholder="First Name" id="userFirstN">
+          <input required type="text" placeholder="Last Name" id="userLastN">
+        </div>
+          <input required type="text" placeholder="Username" id="createUser">
+          <input required type="text" placeholder="Password" id="createPassword">
+          <div class="indexButton">
+             <button type="submit" id="submitButton">Create</button>
+          </div>
+        </form>
+      <form action="#" class="loginForm">
+          <input required type="text" placeholder="Username" id="userName">
+          <input required type="text" placeholder="Password" id="passWord">
+          <div class="indexButton">
+             <button type="submit" id="submitButton">Login</button>
+          </div>
+        </form>
+        
+    </div>
+  </section>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+<div id="homePageDiv" class="">
 	<div class="navBar">
     	<a class="logo"><h1>GameBro ReViews</h1></a>
     <nav role="navigation" class="topNav">
       <div class="loginText">
         <p class="loggedIn"></p>
       </div>
-      <button class="postButton" data-modal-trigger="form">Post/Edit Review</button>
+      <button class="postButton" data-modal-trigger="form">Post Review</button>
     </nav>
   </div>
 
@@ -27,7 +73,7 @@
 <section data-modal="form" class="modal-wrapper">
   <article class="modal-body">
     <header>
-      <h2>Post/Edit A Review</h2>
+      <h2>Post A Review</h2>
     </header>
     <div class="modal-main">
       <div class="formDiv">
@@ -53,12 +99,11 @@
 
 
 
-
-
   <section role="region">
     <div class="reviewOverview">
           <h2>Click To See Full Review</h2>
           <div class="flexParent">
+            <div id="scoreInfo">
 <!--         <div class="flex-container">
           <div class="box"> 
             <div id="gameImage"> <img id="gamePicture" src= "http://via.placeholder.com/150x150"> 
@@ -68,7 +113,7 @@
                <p class="gameTitle">Mario Odyssey</p> 
                <p class="platform"> Nintendo Switch</p>
             </div>
-            <div id="scoreInfo"> <img id="scorePicture" src= "http://via.placeholder.com/150x150">
+             <img id="scorePicture" src= "http://via.placeholder.com/150x150">
                <p class="score">7</p>
             </div>
           </div>
@@ -76,6 +121,98 @@
         </div>
     </div>
   </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="mainReviewPage" class="hidden">
+  <div class="navBar2">
+      <a href="homepage.html"><button class="backButton">Back To Homepage</button></a>
+      <a class="logo2"><h1>GameBro ReViews</h1></a>
+    <nav role="navigation" class="topNav">
+      <div class="loginText">
+        <p class="loggedIn"></p>
+      </div>
+      <button class="postButton" data-modal-trigger="form">Post Review</button>
+    </nav>
+  </div>
+
+
+<div class="modalParent">
+<section data-modal="form" class="modal-wrapper">
+  <article class="modal-body">
+    <header>
+      <h2>Post A Review</h2>
+    </header>
+    <div class="modal-main">
+      <div class="formDiv">
+        <form action="/reviews" method="post" class="postEdit">
+          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle">
+          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle">
+          <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL">
+          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform">
+          <input required type="number" name="gameScore" min="1" max="10" placeholder="Enter a Score (1-10)" id="postScore">
+          <div class="reviewArea">
+          <textarea required cols="100" rows="20" name="postReview" placeholder="Type Your Review Here!" id="gameReview"></textarea>
+          </div>
+          <div formButtons>
+            <button type="submit" id="submitButton">Submit</button>
+            <button class="close">close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
+</section>
+</div>
+
+  <div class="mainReviewDiv">
+<!--   <section role="region">
+    <div class="reviewOverviewTwo">
+      <h2 class="postTitle">POST TITLE HERE</h2>
+      <h3 class="gameTitle">GAME TITLE HERE</h3>
+      <h4 class="authorName">AUTHOR NAME HERE</h4>
+      <div class="flexParent2">
+        <div class="flex-container">
+          <div class="reviewBox">
+            <p class="postedReview">Lorem ipsum dolor sit amet, maiores ornare ac fermentum, imperdiet ut vivamus a, nam lectus at nunc. Quam euismod sem, semper ut potenti pellentesque quisque. In eget sapien sed, sit duis vestibulum ultricies, placerat morbi amet vel, nullam in in lorem vel. In molestie elit dui dictum, praesent nascetur pulvinar sed, in dolor pede in aliquam, risus nec error quis pharetra. Eros metus quam augue suspendisse, metus rutrum risus erat in.  In ultrices quo ut lectus, etiam vestibulum urna a est, pretium luctus euismod nisl, pellentesque turpis hac ridiculus massa. Venenatis a taciti dolor platea, curabitur lorem platea urna odio, convallis sit pellentesque lacus proin. Et ipsum velit diam nulla, fringilla vel tincidunt vitae, elit turpis tellus vivamus, dictum adipiscing convallis magna id. Viverra eu amet sit, dignissim tincidunt volutpat nulla tincidunt, feugiat est erat dui tempor, fusce tortor auctor vestibulum. Venenatis praesent risus orci, ante nam volutpat erat. Cursus non mollis interdum maecenas, consequat imperdiet penatibus enim, tristique luctus tellus eos accumsan, ridiculus erat laoreet nunc.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<div class="footer">
+  <div class="flex-container2">
+          <div class="box2"> 
+            <div class="gameImage2"> <img src= "http://via.placeholder.com/100x100"> 
+            </div>
+            <div id="postInfo2"> 
+               <p class="authorName"> Tyler Gray </p>
+               <p class="gameTitle">Mario Odyssey</p> 
+               <p class="platform"> Nintendo Switch</p>
+            </div>
+            <div id="scoreInfo2"> <img src= "http://via.placeholder.com/100x100">
+               <p class="score">7</p>
+            </div>
+          </div>
+        </div>
+</div> -->
+</div>
+</div>
+
+
+
+
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- <script type="text/javascript" src="jquery.js"></script> -->

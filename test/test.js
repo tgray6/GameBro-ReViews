@@ -16,39 +16,43 @@ mongoose.Promise = global.Promise;
 
 
 
+//REMOVED PAGEROUTER, TESTS NO LONGER APPLY
+//pageRouter.js was messing up the endpoints on server side.
+//remember the server sees the files differently than your local dev computer.
+
 //HTML ENDPOINT TESTS
-describe('login endpoint', function() {
-			it('should return a 200 status code and  login html', function() {
-				return chai.request(app)
-				.get('/')
-				.then(function(res) {
-				res.should.have.status(200);
-				res.should.be.html;
-				})
-			});
-});
+// describe('login endpoint', function() {
+// 			it('should return a 200 status code and  login html', function() {
+// 				return chai.request(app)
+// 				.get('/')
+// 				.then(function(res) {
+// 				res.should.have.status(200);
+// 				res.should.be.html;
+// 				})
+// 			});
+// });
 
-describe('homepage endpoint', function() {
-	it('should return a 200 status code and homepage html', function() {
-		return chai.request(app)
-		.get('/homepage')
-		.then(function(res) {
-		res.should.have.status(200);
-		res.should.be.html;
-		})
-	});
-});
+// describe('homepage endpoint', function() {
+// 	it('should return a 200 status code and homepage html', function() {
+// 		return chai.request(app)
+// 		.get('/homepage')
+// 		.then(function(res) {
+// 		res.should.have.status(200);
+// 		res.should.be.html;
+// 		})
+// 	});
+// });
 
-describe('review endpoint', function() {
-	it('should return a 200 status code and review html', function() {
-		return chai.request(app)
-		.get('/review')
-		.then(function(res) {
-		res.should.have.status(200);
-		res.should.be.html;
-		})
-	});
-});
+// describe('review endpoint', function() {
+// 	it('should return a 200 status code and review html', function() {
+// 		return chai.request(app)
+// 		.get('/review')
+// 		.then(function(res) {
+// 		res.should.have.status(200);
+// 		res.should.be.html;
+// 		})
+// 	});
+// });
 //END HTML TESTS
 
 
@@ -134,7 +138,7 @@ describe('Review API Resource', function() {
 
 
 //GET TEST
-describe ('GET endpoint at /reviews', function() {
+describe ('GET endpoint', function() {
 	it('should return existing reviews', function(){
 	let res;
 	return chai.request(app)
@@ -216,5 +220,66 @@ describe('POST endpoint', function(){
 })
 
 
+
+
+//PUT TEST
+describe ('PUT endpoint', function(){
+	it('should update appropriate fields you submit', function() {
+		const updatedReview = {
+			postTitle: "Megaman",
+			gameTitle: "Megaman 7",
+			gamePlatform: "SNES",
+			gameScore: 10,
+			gameImage: "http://img2.game-oldies.com/sites/default/files/packshots/nintendo-super-nes/megaman-vii-usa.png",
+			postReview: "Pretty Solid Game"
+		};
+
+		return PostReview
+			.findOne()
+			.then(function(review){
+				updatedReview.id=review.id;
+
+				return chai.request(app)
+					.put(`/${review.id}`)
+					.send(updatedReview);
+			})
+			.then(function(res) {
+				res.should.have.status(204);
+				return PostReview.findById(updatedReview.id);
+			})
+			.then(function(review) {
+				review.postTitle.should.equal(updatedReview.postTitle);
+				review.gameTitle.should.equal(updatedReview.gameTitle);
+				review.gamePlatform.should.equal(updatedReview.gamePlatform);
+				review.gameScore.should.equal(updatedReview.gameScore);
+				review.gameImage.should.equal(updatedReview.gameImage);
+				review.postReview.should.equal(updatedReview.postReview);
+			});
+});
+});
+
+
+
+
+//DELETE TEST
+describe ('DELETE endpoint', function() {
+	it('should delete a review by ID', function(){
+		let reviewPost;
+
+		return PostReview
+			.findOne()
+			.then(function(_reviewPost) {
+				reviewPost=_reviewPost;
+				return chai.request(app).delete(`/${reviewPost.id}`);
+			})
+			.then(function(res){
+				res.should.have.status(204);
+				return PostReview.findById(reviewPost.id);
+			})
+			.then(function(_reviewPost){
+				should.not.exist(_reviewPost)
+			});
+	});
+});
 
 });

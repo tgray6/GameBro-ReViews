@@ -12,15 +12,20 @@
 <body>
 <main role="main">
 
-<div class="flexContainer">
+<div id="loginDiv">
+  <div class="loginflexContainer">
 
 	<section role="region">
-		<div class="formDiv">
+		<div class="loginDiv">
 			<header role="banner">
 				<h1 class="mainheader">GameBro ReViews</h1>
 			</header>
 
 			<form action="#" class="createForm">
+        <div>
+          <input required type="text" placeholder="First Name" id="userFirstN">
+          <input required type="text" placeholder="Last Name" id="userLastN">
+        </div>
     			<input required type="text" placeholder="Username" id="createUser">
     			<input required type="text" placeholder="Password" id="createPassword">
           <div class="indexButton">
@@ -38,6 +43,7 @@
 		</div>
 	</section>
 
+  </div>
 </div>
 </main>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -56,6 +56,36 @@ app.post('/reviews', (req, res) => {
 
 
 
+//PUT endpoint
+app.put('/:id', (req, res) => {
+  const updated = {};
+  const updatedFields = ["postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
+    updatedFields.forEach(field => {
+    if (field in req.body) {
+      updated[field] = req.body[field];
+    }
+  });
+
+  PostReview
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .then(updatedReview => res.status(204).end())
+    .catch(err => res.status(500).json({message: "Something Broke"}));
+});
+
+
+
+
+
+
+//DELETE ENDPOINT
+app.delete('/:id', (req, res) => {
+  PostReview
+    .findByIdAndRemove(req.params.id)
+    .then(() => {
+      res.status(204).end()
+    });
+});
+
 
 
 //COPIED AND PASTED runServer and closeServer from node-restaurants app
