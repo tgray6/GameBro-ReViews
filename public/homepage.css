@@ -132,8 +132,6 @@ h4{
   width: 650px;
   min-height: 200px;
   max-height: 100%;
-  margin-bottom: 10px;
-  padding-bottom: 20px;
   padding-top: 20px;
   padding-bottom: 25px;
   padding-left: 10px;
@@ -279,14 +277,18 @@ header {
 }
 
 .gamePicture{
-  height: 150px;
-  width: 150px;
+  max-height: 150px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
   border: 1px solid black;
 }
 
 .gameImage2{
-  height: 100px;
-  width: 100px;
+  max-height: 175px;
+  max-width: 175px;
+  width: auto;
+  height: auto;
 }
 
 .footer {
