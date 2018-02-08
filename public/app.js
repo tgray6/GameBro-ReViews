@@ -119,13 +119,12 @@ function getReviewData(callback) {
 
 function displayReviews(data){
   console.log(data);
-  lastData = data.reviews
+  lastData = data.reviews;
 	// const loginResults = data.reviews.map(renderLoginData);
 	const reviewResults = data.reviews.map(renderHomeData);
 	// $(".loginText").html(loginResults);
-	$(".flexParent").html(reviewResults);
+	$(".flexParent").append(reviewResults);
   reviewPage();
-  // renderScoreImage();
 }
 
 

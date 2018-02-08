@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="homepage.css">
   <link rel="stylesheet" href="normalize.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
 </head>
 
 <body>
@@ -25,7 +26,6 @@
       <header role="banner">
         <h1 class="mainheader">GameBro ReViews</h1>
       </header>
-
       <form action="#" class="createForm">
         <div>
           <input required type="text" placeholder="First Name" id="userFirstN">
@@ -82,13 +82,13 @@
           <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle">
           <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL">
           <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform">
-          <input required type="number" name="gameScore" min="1" max="10" placeholder="Enter a Score (1-10)" id="postScore">
+          <input required type="number" name="gameScore" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore">
           <div class="reviewArea">
-          <textarea required cols="100" rows="20" name="postReview" placeholder="Type Your Review Here!" id="gameReview"></textarea>
+          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" placeholder="Type Your Review Here!" id="gameReview"></textarea>
           </div>
           <div formButtons>
             <button type="submit" id="submitButton">Submit</button>
-            <button class="close">close</button>
+            <button class="close">Close</button>
           </div>
         </form>
       </div>
@@ -101,7 +101,7 @@
 
   <section role="region">
     <div class="reviewOverview">
-          <h2>Click To See Full Review</h2>
+          <h3>Click To See Full Review</h2>
           <div class="flexParent">
             <div id="scoreInfo">
 <!--         <div class="flex-container">
@@ -141,7 +141,7 @@
       <div class="loginText">
         <p class="loggedIn"></p>
       </div>
-      <button class="postButton" data-modal-trigger="form">Post Review</button>
+      <!-- <button class="postButton" data-modal-trigger="form">Post Review</button> -->
     </nav>
   </div>
 

@@ -26,11 +26,13 @@ app.use(morgan('common'));
 app.get('/reviews', (req, res) =>{
 	PostReview
 		.find()
+    .sort({'created': 'desc'})
 		.then(reviews => {
 			res.json({
 				reviews: reviews.map(
 					(reviews) => reviews.serialize())
 			});
+
 		})
 		.catch(err =>{
 			console.error(err);
