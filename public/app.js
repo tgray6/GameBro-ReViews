@@ -12,33 +12,24 @@
 // 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
 // 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
 // 	},
-
-// 		//will make a function later, where depending on score, the picture will change, and the score text will be replaced with the scorePicture. Users will only input gameScore on their review, client will take care of changing from 1-10 to picture.
-// 		// scorePicture: "http://via.placeholder.com/150x150",
-// 		// reviewDate: Date.now
 //     ]
 // };
 
 
-// // <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
 
-// // 	// {
-// // 	// 	"author":{
-// // 	// 		"firstName": "Josh",
-// // 	// 		"lastName": "Gore"
-// // 	// 	},
-// // 	// 	"postTitle": "Yay, Metroid",
-// // 	// 	"gameTitle": "Super Metroid",
-// // 	// 	"gamePlatform": "Super NES",
-// // 	// 	"gameScore": "9",
-// // 	// 	"gameImage": "http://img.kbhgames.com/2017/05/Hyper-Metroid-150x150.jpg",
-// // 	// 	"postReview": "Super Metroid was really fun."
-
-// // 	// },
-// // 	]
-// // };
-
-
+const scoreURL = [
+"/zero.png",
+"/one.png",
+"/two.png",
+"/three.png",
+"/four.png",
+"/five.png",
+"/six.png",
+"/seven.png",
+"/eight.png",
+"/nine.png",
+"/ten.png"
+]
 
 
 //renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
@@ -52,27 +43,19 @@ function renderLoginData(result){
 function renderHomeData(result){
 	return `
         	<div class="flex-container">
-          		<div class="box"> 
-            		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}"> 
+          		<div class="box grow" id="${result.id}"> 
+            		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}">
             		</div>
             		<div class="postInfo"> 
-               			
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
-            		</div>
-            		  <div>
-               		 <p class="score">${result.gameScore}</p>
-            		  </div>
+            		</div class="scoreInfo"> <img class="scorePicture" src= "${scoreURL[result.gameScore]}">
+
           		</div>
         	</div>
 	`
 }
-//REMOVED FROM DIV ON LINE 63, PICTURES CAUSING TOO MANY PROBLEMS AND SLOWING ME DOWN
-// class="scoreInfo"> <img class="scorePicture" src= "">
 
-      // <h4 class="authorName">Author: ${result.author.firstName} ${result.author.lastName.trim()}</h4>
-
-      // <p class="authorName">${result.author.firstName} ${result.author.lastName.trim()}</p>
 
 //REVIEW DATA (review.html)
 function renderReviewData(result){
@@ -103,7 +86,7 @@ function renderReviewData(result){
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
             </div>
-              <div>
+              <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}">
                 <p class="score">${result.gameScore}</p>
               </div>
           </div>
@@ -117,20 +100,10 @@ function renderReviewData(result){
 
 
 
-
 let apiURL = '/reviews';
 
 function getReviewData(callback) {
   const settings = {
-  // data: {
-  //   author: `"${author}"`,
-  //   postTitle: `"${postTitle}"`,
-  //   gameTitle: `"${gameTitle}"`,
-  //   gamePlatform: `"${gamePlatform}"`,
-  //   gameScore: `"${gameScore}"`,
-  //   gameImage: `"${gameImage}"`,
-  //   postReview: `"${postReview}"`,
-  //   },
     dataType: "json",
     crossDomain: true,
     type: 'GET',
@@ -146,14 +119,16 @@ function getReviewData(callback) {
 
 function displayReviews(data){
   console.log(data);
+  lastData = data.reviews
 	// const loginResults = data.reviews.map(renderLoginData);
 	const reviewResults = data.reviews.map(renderHomeData);
-	const reviewResults2 = data.reviews.map(renderReviewData);
 	// $(".loginText").html(loginResults);
 	$(".flexParent").html(reviewResults);
-	$(".mainReviewDiv").html(reviewResults2);
+  reviewPage();
   // renderScoreImage();
 }
+
+
 
 function getAndDisplayReviews(){
 	getReviewData(displayReviews);
@@ -162,6 +137,37 @@ function getAndDisplayReviews(){
 $(function(){
 	getAndDisplayReviews();
 })
+
+
+
+
+function reviewPage(){
+$('.box').on('click',function(){
+  $('#homePageDiv').addClass('hidden');
+  $('#mainReviewPage').removeClass('hidden');
+  console.log(lastData);
+  let reviewZ = lastData.find(review=> review.id == this.id);
+  console.log(reviewZ);
+  let reviewResults2 = renderReviewData(reviewZ)
+  console.log(reviewResults2);
+  $(".mainReviewDiv").html(reviewResults2);
+  console.log(this.id);
+  });
+};
+
+
+
+// function detailReviews(data){
+//   return `
+
+//   `
+// }
+
+
+// function testFunction(){
+//   $.getJSON(apiURL, function(data){
+//   })
+// }
 
 
 
@@ -175,11 +181,6 @@ $(function(){
 //     $('.scorePicture').attr("src", "http://www.clker.com/cliparts/R/t/I/J/5/M/number-nine-in-red-hi.png");
 //   }
 // };
-
-
-
-
-
 
 
 

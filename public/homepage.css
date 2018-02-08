@@ -12,7 +12,7 @@
 
 body{
   padding-bottom: 160px;
-  background-color: #2b2525;
+  background-color: rgb(20, 19, 20);
 }
 
 h2{
@@ -143,6 +143,13 @@ h4{
   border: 1px solid black;
 }
 
+.box:hover{
+  cursor: pointer;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.05); }
+
 .reviewBox{
   justify-content: space-between;
   display: flex;
@@ -236,7 +243,7 @@ h4{
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: #d60000;
+  background-color: rgb(20, 19, 20);
   overflow-y:scroll;
 
 }
@@ -281,7 +288,6 @@ header {
   max-width: 150px;
   width: auto;
   height: auto;
-  border: 1px solid black;
 }
 
 .gameImage2{
@@ -303,8 +309,8 @@ header {
 }
 
 .scorePicture{
-  width: 150px;
-  height: 150px;
+  width: 125px;
+  height: 125px;
 }
 
 .scoreImage2{
