@@ -94,8 +94,6 @@ function renderReviewData(result){
 </div>`
 }
 
-//REMOVED FROM LINE 106, PICTURES CAUSING TOO MANY PROBLEMS AND SLOWING ME DOWN
-// <div> <img class="scoreImage2" src= "">
 
 
 
@@ -114,9 +112,6 @@ function getReviewData(callback) {
 }
 
 
-
-
-
 function displayReviews(data){
   console.log(data);
   lastData = data.reviews;
@@ -127,7 +122,6 @@ function displayReviews(data){
   reviewPage();
   watchSubmit();
 }
-
 
 
 function getAndDisplayReviews(){
@@ -141,6 +135,10 @@ $(function(){
 
 
 
+
+
+
+//INDIVIDUAL REVIEW RENDERING ON CLICK
 function reviewPage(){
 $('.box').on('click',function(){
   $('#homePageDiv').addClass('hidden');
@@ -160,88 +158,88 @@ function homeRedirect(){
 };
 
 
-// function detailReviews(data){
-//   return `
 
-//   `
+
+
+
+
+//FORM SUBMIT
+function watchSubmit() {
+  $('#reviewForm').submit(function(event) {
+    event.preventDefault();
+
+  const settings = {
+    data:{
+      postTitle: $('#postTitle').val(),
+      gameTitle: $('#postGameTitle').val(),
+      gamePlatform: $('#postPlatform').val(),
+      gameScore: $('#postScore').val(),
+      gameImage: $('#postGameURL').val(),
+      postReview: $('#gameReview').val()
+    },
+    dataType: "json",
+    crossDomain: true,
+    type: 'POST',
+    url: apiURL,
+    success: homeRedirect
+  };
+  $.ajax(settings);
+  });
+}
+
+
+// function watchSubmit() {
+//   $('#reviewForm').submit(function(event) {
+//     event.preventDefault();
+
+//     //postTitle FORM
+//     let postTitle = $(event.currentTarget).find('#postTitle').val();
+//     let postValue = postTitle.val();
+//     postTitle.val("");
+
+//     //gameTitle FORM
+//     let gameTitle = $(event.currentTarget).find('#postGameTitle').val();
+//     let gameValue = gameTitle.val();
+//     gameTitle.val("");
+
+//     //gamePlatform FORM
+//     let gamePlatform = $(event.currentTarget).find('#postPlatform').val();
+//     let platformValue = gamePlatform.val();
+//     gamePlatform.val("")
+
+//     //gameScore FORM
+//     let gameScore = $(event.currentTarget).find('#postScore').val();
+//     let scoreValue = gameScore.val();
+//     gameScore.val("")
+
+//     //gameImage FORM
+//     let gameImage = $(event.currentTarget).find('#postGameURL').val();
+//     let imageValue = gameImage.val();
+//     gameImage.val("");
+
+//     //postReview FORM
+//     let postReview = $(event.currentTarget).find('#gameReview').val();
+//     let reviewValue = postReview.val();
+//     postReview.val("")
+
+//   const settings = {
+//     data:{
+//       postTitle: postTitle,
+//       gameTitle: gameTitle,
+//       gamePlatform: gamePlatform,
+//       gameScore: gameScore,
+//       gameImage: gameImage,
+//       postReview: postReview
+//     },
+//     dataType: "json",
+//     crossDomain: true,
+//     type: 'POST',
+//     url: apiURL,
+//     success: homeRedirect
+//   };
+//   $.ajax(settings);
+//   });
 // }
-
-
-// function testFunction(){
-//   $.getJSON(apiURL, function(data){
-//   })
-// }
-
-
-
-
-// function renderScoreImage(){
-//   let score = $('.score').val();
-//   if (score = 10){
-//     $('.scorePicture').attr("src", "http://www.clker.com/cliparts/E/J/e/s/C/8/red-rounded-square-with-number-10-hi.png");
-//   }
-//   else if (score = 9){
-//     $('.scorePicture').attr("src", "http://www.clker.com/cliparts/R/t/I/J/5/M/number-nine-in-red-hi.png");
-//   }
-// };
-
-
-
-// function scoreTest(){
-//   let score = $('.score').text();
-//   console.log (score);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -286,61 +284,6 @@ function homeRedirect(){
 // })
 
 
-
-
-
-function watchSubmit() {
-  $('#reviewForm').submit(function(event) {
-    event.preventDefault();
-
-    //postTitle FORM
-    let postTitle = $(event.currentTarget).find('#postTitle');
-    let postValue = postTitle.val();
-    postTitle.val("");
-
-    //gameTitle FORM
-    let gameTitle = $(event.currentTarget).find('#postGameTitle');
-    let gameValue = gameTitle.val();
-    gameTitle.val("");
-
-    //gamePlatform FORM
-    let gamePlatform = $(event.currentTarget).find('#postPlatform');
-    let platformValue = gamePlatform.val();
-    gamePlatform.val("");
-
-    //gameScore FORM
-    let gameScore = $(event.currentTarget).find('#postScore');
-    let scoreValue = gameScore.val();
-    gameScore.val("");
-
-    //gameImage FORM
-    let gameImage = $(event.currentTarget).find('#postGameURL');
-    let imageValue = gameImage.val();
-    gameImage.val("");
-
-    //postReview FORM
-    let postReview = $(event.currentTarget).find('#gameReview');
-    let reviewValue = postReview.val();
-    postReview.val("");
-
-  const settings = {
-    data:{
-      postTitle: postValue,
-      gameTitle: gameValue,
-      gamePlatform: platformValue,
-      gameScore: scoreValue,
-      gameImage: imageValue,
-      postReview: reviewValue
-    },
-    dataType: "json",
-    crossDomain: true,
-    type: 'POST',
-    url: apiURL,
-    success: homeRedirect
-  };
-  $.ajax(settings);
-  });
-}
 
 
 

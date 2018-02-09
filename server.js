@@ -27,6 +27,7 @@ app.get('/reviews', (req, res) =>{
 	PostReview
 		.find()
     .sort({'created': 'desc'})
+    .limit(5)
 		.then(reviews => {
 			res.json({
 				reviews: reviews.map(
