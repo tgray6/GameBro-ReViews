@@ -125,6 +125,7 @@ function displayReviews(data){
 	// $(".loginText").html(loginResults);
 	$(".flexParent").append(reviewResults);
   reviewPage();
+  watchSubmit();
 }
 
 
@@ -154,6 +155,9 @@ $('.box').on('click',function(){
   });
 };
 
+function homeRedirect(){
+    window.location.href='/homepage.html';
+};
 
 
 // function detailReviews(data){
@@ -285,45 +289,58 @@ $('.box').on('click',function(){
 
 
 
-// function watchSubmit() {
-//   $('.postEdit').submit(function(event) {
-//     event.preventDefault();
+function watchSubmit() {
+  $('#reviewForm').submit(function(event) {
+    event.preventDefault();
 
-//     //postTitle FORM
-//     let postTitle = $(event.currentTarget).find('#postTitle');
-//     let postValue = postTitle.val();
-//     postTitle.val("");
+    //postTitle FORM
+    let postTitle = $(event.currentTarget).find('#postTitle');
+    let postValue = postTitle.val();
+    postTitle.val("");
 
-//     //gameTitle FORM
-//     let gameTitle = $(event.currentTarget).find('#postGameTitle');
-//     let gameValue = gameTitle.val();
-//     gameTitle.val("");
+    //gameTitle FORM
+    let gameTitle = $(event.currentTarget).find('#postGameTitle');
+    let gameValue = gameTitle.val();
+    gameTitle.val("");
 
-//     //gamePlatform FORM
-//     let gamePlatform = $(event.currentTarget).find('#postGamePlatform');
-//     let platformValue = gamePlatform.val();
-//     gamePlatform.val("");
+    //gamePlatform FORM
+    let gamePlatform = $(event.currentTarget).find('#postPlatform');
+    let platformValue = gamePlatform.val();
+    gamePlatform.val("");
 
-//     //gameScore FORM
-//     let gameScore = $(event.currentTarget).find('#postScore');
-//     let scoreValue = gameScore.val();
-//     gameScore.val("");
+    //gameScore FORM
+    let gameScore = $(event.currentTarget).find('#postScore');
+    let scoreValue = gameScore.val();
+    gameScore.val("");
 
-//     //gameImage FORM
-//     let gameImage = $(event.currentTarget).find('#postGameURL');
-//     let imageValue = gameImage.val();
-//     gameImage.val("");
+    //gameImage FORM
+    let gameImage = $(event.currentTarget).find('#postGameURL');
+    let imageValue = gameImage.val();
+    gameImage.val("");
 
-//     //postReview FORM
-//     let postReview = $(event.currentTarget).find('#gameReview');
-//     let reviewValue = postReview.val();
-//     postReview.val("");
+    //postReview FORM
+    let postReview = $(event.currentTarget).find('#gameReview');
+    let reviewValue = postReview.val();
+    postReview.val("");
 
-
-//     getReviewData(postValue, gameValue, platformValue, scoreValue, imageValue, reviewValue, displayReviews);
-//   });
-// }
-// $(watchSubmit);
+  const settings = {
+    data:{
+      postTitle: postValue,
+      gameTitle: gameValue,
+      gamePlatform: platformValue,
+      gameScore: scoreValue,
+      gameImage: imageValue,
+      postReview: reviewValue
+    },
+    dataType: "json",
+    crossDomain: true,
+    type: 'POST',
+    url: apiURL,
+    success: homeRedirect
+  };
+  $.ajax(settings);
+  });
+}
 
 
 
