@@ -105,7 +105,7 @@ let server;
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
-    mongoose.connect(databaseUrl, err => {
+    MongoClient.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
@@ -114,7 +114,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
         resolve();
       })
         .on('error', err => {
-          mongoose.disconnect();
+          MongoClient.disconnect();
           reject(err);
         });
     });
@@ -124,7 +124,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 // this function closes the server, and returns a promise. we'll
 // use it in our integration tests later.
 function closeServer() {
-  return mongoose.disconnect().then(() => {
+  return MongoClient.disconnect().then(() => {
     return new Promise((resolve, reject) => {
       console.log('Closing server');
       server.close(err => {
@@ -144,12 +144,3 @@ if (require.main === module) {
 }
 
 module.exports = { app, runServer, closeServer };
-
-
-
-
-
-
-
-
-// module.exports = {app};
