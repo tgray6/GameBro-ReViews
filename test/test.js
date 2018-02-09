@@ -184,7 +184,7 @@ describe ('GET endpoint', function() {
 });
 
 
-//PUT TEST
+//POST TEST
 describe('POST endpoint', function(){
 	it('should add a new review post with proper keys', function(){
 		const newPost = generatePostData();
