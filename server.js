@@ -23,7 +23,6 @@ const MongoClient = require('mongodb').MongoClient
 
 
 
-
 app.get('/reviews', (req, res) =>{
 	PostReview
 		.find()
@@ -103,7 +102,7 @@ app.delete('/:id', (req, res) => {
 let server;
 
 // this function connects to our database, then starts the server
-MongoClient.connect('mongodb://tgray6:sagesage1@ds113648.mlab.com:13648/gamebro') {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
