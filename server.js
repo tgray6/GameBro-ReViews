@@ -100,14 +100,16 @@ app.delete('/:id', (req, res) => {
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
 let server;
+let db;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT, client) {
 
   return new Promise((resolve, reject) => {
     MongoClient.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
+        db=client.db('gamebro')
       }
       server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
