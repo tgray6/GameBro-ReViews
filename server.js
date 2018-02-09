@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 // app.use(pageRouter);
 // app.listen(process.env.PORT || 8080);
-const MongoClient = require('mongodb').MongoClient
+// const MongoClient = require('mongodb').MongoClient
 
 
 
@@ -100,23 +100,21 @@ app.delete('/:id', (req, res) => {
 // gets created when `runServer` runs, so we declare `server` here
 // and then assign a value to it in run
 let server;
-let db;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl = DATABASE_URL, port = PORT, client) {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
-    MongoClient.connect(databaseUrl, err => {
+    mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
-        db=client.db('gamebro')
       }
       server = app.listen(port, () => {
         console.log(`Your app is listening on port ${port}`);
         resolve();
       })
         .on('error', err => {
-          MongoClient.disconnect();
+          mongoose.disconnect();
           reject(err);
         });
     });
@@ -126,7 +124,7 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT, client) {
 // this function closes the server, and returns a promise. we'll
 // use it in our integration tests later.
 function closeServer() {
-  return MongoClient.disconnect().then(() => {
+  return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
       console.log('Closing server');
       server.close(err => {
