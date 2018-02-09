@@ -18,6 +18,7 @@ app.use(express.static('public'));
 app.use(morgan('common'));
 // app.use(pageRouter);
 // app.listen(process.env.PORT || 8080);
+const MongoClient = require('mongodb').MongoClient
 
 
 
@@ -102,7 +103,7 @@ app.delete('/:id', (req, res) => {
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl = DATABASE_URL, port = PORT) {
+MongoClient.connect('mongodb://tgray6:sagesage1@ds113648.mlab.com:13648/gamebro') {
 
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
