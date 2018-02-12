@@ -153,7 +153,7 @@ $('.box').on('click',function(){
 };
 
 function homeRedirect(){
-    window.location.href='/homepage.html';
+    window.location.href='/index.html';
 };
 
 

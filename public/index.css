@@ -5,31 +5,435 @@
 }
 
 /*html {
-  background: url("http://wallpaperesque.com/wp-content/uploads/plixpapers1504/mega_man_wallpaper_background_47997.jpg") no-repeat center center fixed;
+  background: url("http://www.flowersinspace.com/img/red-and-black-wallpaper/_fullsize/smart-red-abstract-wallpaper-x-full-hd-red-black-wallpaper-and-download-black_red-and-black-wallpaper.jpg") no-repeat center center fixed;
   background-size: cover;
   height: 100%;
-  overflow: hidden;
 }*/
 
 body{
-	margin-left: auto;
-	margin-right: auto;
-  background-color: #2b2525;
+  background-color: #f5f5f5;
 }
 
+
+.joyStickBannerFlex{
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+}
+
+.joyBox1 {
+  width: 10%;
+  height: 80px;
+}
+
+.joyStickPic{
+  position: relative;
+  top: 20px;
+  height: 50px;
+  width: 50px;
+}
+
+
+h1{
+  font-family: 'Audiowide', cursive;
+}
+
+h2{
+  color: black;
+  font-size: 50px;
+}
+
+h3{
+  color: black;
+  font-size: 30px;
+}
+
+h4{
+  color: black;
+}
+
+.loggedIn{
+  color: black;
+}
+
+.navBar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /*padding: 34.5px;*/
+  padding: 20px;
+  background-color: #d60000;
+  border-bottom: 1px solid black;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+.navBar2{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #d60000;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+  padding: 10px;
+/*  padding-bottom: 40px;*/
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.logo h1 {
+  position: relative;
+  top: -6px;
+  font-size: 50px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: white;
+  font-family: 'Audiowide', cursive;
+}
+
+.logo2 h1 {
+  font-size: 50px;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: white;
+  font-family: 'Audiowide', cursive;
+}
+
+.topNav{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.navLinks{
+  font-size: 25px;
+  padding-right: 20px;
+}
+
+.postButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  top: 15px;
+}
+
+
+
+@media screen and (max-width: 950px) {
+  .topNav{
+  position: relative;
+  }
+  .postButton{
+    top:0px;
+
+    font-size: 10px;
+  }
+
+  .logo h1{
+    font-size: 30px;
+  }
+
+  .joyStickPic{
+    display: none;
+  }
+
+  .backButton{
+    position: relative !important;
+    font-size: 10px !important;
+    top: 0px !important;
+  }
+
+  #mainReviewPage{
+  margin-top: 200px;
+  }
+}
+
+
+@media screen and (min-width: 550px){
+.loginDiv{
+  margin-top: 20%;
+}
+}
+
+
+
+.backButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  top: 58px;
+  left: -8px;
+
+}
+
+.reviewOverview{
+  margin-top: 175px;
+  text-align: center;
+}
+
+.reviewOverviewTwo{
+  margin-top: 175px;
+  text-align: center;
+}
+
+.flex-container{
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin-bottom: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.box{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+  min-height: 200px;
+  max-height: 100%;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #d60000;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+.box:hover{
+  cursor: pointer;
+}
+
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.05); }
+
+.reviewBox{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+  max-height: 100%;
+  margin-bottom: 150px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #d60000;
+  border-radius: 20px;
+  font-size: 20px;
+  color: white;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+.flex-containerReview{
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin-bottom: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flex-container2{
+  width: 100%;
+  height: 100%;
+  max-width: 1350px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box2{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  width: 650px;
+  min-height: 130px;
+  max-height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #d60000;
+/*  border-radius: 20px;*/
+  font-size: 15px;
+  box-shadow: inset 0px 11px 8px -10px black,
+  inset 0px -11px 8px -10px black
+}
+
+.hidden{
+  display: none;
+}
+
+.modalHeader{
+  color: white;
+}
+
+.modalParent{
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+
+.modal-wrapper {
+  display: none;
+  transition: all 0.3s ease-in-out;
+  background-color: transparent;
+}
+
+.modal-wrapper.is-open {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(20, 19, 20);
+  overflow-y:scroll;
+
+}
+
+.modal-body {
+  animation: pop 0.5s ease;
+  width: 100%;
+}
+
+header {
+  position: relative;
+}
+
+
+@keyframes pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  
+  90% {
+    transform: scale(1.02);
+  }
+  
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reviewArea{
+  margin-top: 20px;
+}
+
+
+#postScore{
+  width: 199px;
+}
+
+.gamePicture{
+  max-height: 150px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+.gameImage2{
+  max-height: 150px;
+  max-width: 150px;
+  width: auto;
+  height: auto;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+.footer {
+  position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #d60000;
+    color: white;
+    text-align: center;
+    height: 150px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border: 1px solid black;
+    box-shadow: inset 0px 11px 8px -10px black,
+                inset 0px -11px 8px -10px black
+}
+
+.scorePicture{
+  width: 150px;
+  height: 160px;
+}
+
+.scoreImage2{
+  width: 130px;
+  height: 130px;
+}
+
+.footerImage{
+  padding-bottom: 50px;
+}
 
 
 .mainheader{
   color: white;
   text-align: center;
-  font-family: 'Russo One', sans-serif;
   font-size: 50px;
 }
 
+.loginflexContainer{
+  margin-top: 20px;
+}
+
+
 .loginDiv{
-	font-size: 20px;
-	margin-top: 50%;
-	text-align: center;
+  font-size: 20px;
+/*  margin-top: 20%;*/
+  text-align: center;
+  background-color: red;
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
 }
 
 .loginForm{
@@ -46,4 +450,42 @@ body{
   justify-content: center;
   align-items: center;
   /*background-color: #ff3503;*/
+}
+
+.score{
+  font-size: 50px;
+}
+
+.postedReview{
+  white-space: pre-wrap;
+  text-align: left;
+}
+
+
+
+
+button {
+  background: #d60000;
+  -webkit-border-radius: 60;
+  -moz-border-radius: 60;
+  border-radius: 60px;
+  -webkit-box-shadow: 4px 3px 4px #666666;
+  -moz-box-shadow: 4px 3px 4px #666666;
+  box-shadow: 4px 3px 4px #666666;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px;
+  text-decoration: none;
+  transition: all .1s linear;
+  box-shadow: 0 5px 0 gray;
+}
+
+button:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:active {
+  box-shadow: 0 2px 0 gray;
+  transform: translateY(3px);
 }
