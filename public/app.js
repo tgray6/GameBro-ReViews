@@ -87,7 +87,6 @@ function renderReviewData(result){
                <p class="platform">${result.gamePlatform}</p>
             </div>
               <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}">
-                <p class="score">${result.gameScore}</p>
               </div>
           </div>
         </div>
@@ -168,15 +167,10 @@ function watchSubmit() {
   $('#reviewForm').submit(function(event) {
     event.preventDefault();
 
+  let formValues = $(this).serializeArray();
+
   const settings = {
-    data:{
-      postTitle: $('#postTitle').val(),
-      gameTitle: $('#postGameTitle').val(),
-      gamePlatform: $('#postPlatform').val(),
-      gameScore: $('#postScore').val(),
-      gameImage: $('#postGameURL').val(),
-      postReview: $('#gameReview').val()
-    },
+    data:formValues,
     dataType: "json",
     crossDomain: true,
     type: 'POST',
