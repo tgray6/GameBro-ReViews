@@ -4,6 +4,13 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+//USER DATA
+// const {User} = require('./models')
+
+//USERS ROUTER data
+// const {router} = require('./router')
+// const { router: usersRouter } = require('./users');
+// const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;

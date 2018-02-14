@@ -18,17 +18,17 @@
 
 
 const scoreURL = [
-"/zero.png",
-"/one.png",
-"/two.png",
-"/three.png",
-"/four.png",
-"/five.png",
-"/six.png",
-"/seven.png",
-"/eight.png",
-"/nine.png",
-"/ten.png"
+"/images/zero.png",
+"/images/one.png",
+"/images/two.png",
+"/images/three.png",
+"/images/four.png",
+"/images/five.png",
+"/images/six.png",
+"/images/seven.png",
+"/images/eight.png",
+"/images/nine.png",
+"/images/ten.png"
 ]
 
 
@@ -160,8 +160,6 @@ function homeRedirect(){
 
 
 
-
-
 //FORM SUBMIT
 function watchSubmit() {
   $('#reviewForm').submit(function(event) {
@@ -234,11 +232,6 @@ function watchSubmit() {
 //   $.ajax(settings);
 //   });
 // }
-
-
-
-
-
 
 
 
