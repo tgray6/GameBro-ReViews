@@ -3,29 +3,55 @@ const app = express();
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
 
-//USER DATA
-// const {User} = require('./models')
 
-//USERS ROUTER data
-// const {router} = require('./router')
-// const { router: usersRouter } = require('./users');
-// const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 // Mongoose internally uses a promise-like object,
 // but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
 const { PostReview } = require('./models');
-// const pageRouter = require('./pageRouter')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(express.static('public'));
 app.use(morgan('common'));
-// app.use(pageRouter);
-// app.listen(process.env.PORT || 8080);
-// const MongoClient = require('mongodb').MongoClient
+
+
+
+//NEW SECTION FOR USERS AND AUTHENTICATION**************
+
+const passport = require('passport');
+
+//JSON WEB TOKEN AUTH
+const jwtAuth = passport.authenticate('jwt', { session: false });
+
+//USER MODEL DATA
+const {User} = require('./models');
+
+//USERS ROUTER data
+// const {router} = require('./router');
+const { router: usersRouter } = require('./users');
+const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
+app.use('/users', usersRouter);
+app.use('/auth', authRouter);
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+//CORS SECTION
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+//END NEW SECTION**************************************
 
 
 

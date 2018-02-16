@@ -18,7 +18,7 @@
 
 
 
-<div id="loginDivMain" class="hidden">
+<div id="loginDivMain" class="">
   <div class="loginflexContainer">
 
   <section role="region">
@@ -29,20 +29,20 @@
           <h1>GameBro ReViews</h1>
         </div>
       </header>
-      <form action="#" class="createForm">
+      <form id="createForm" class="createForm">
         <div>
-          <input required type="text" placeholder="First Name" id="userFirstN">
-          <input required type="text" placeholder="Last Name" id="userLastN">
+          <input required type="text" placeholder="First Name" name="firstName" id="userFirstN">
+          <input required type="text" placeholder="Last Name" name="lastName" id="userLastN">
         </div>
-          <input required type="text" placeholder="Username" id="createUser">
-          <input required type="text" placeholder="Password" id="createPassword">
+          <input required type="text" name="username" placeholder="Username" id="createUser">
+          <input required type="text" name="password" placeholder="Password" id="createPassword">
           <div class="indexButton">
              <button type="submit" id="submitButton">Create</button>
           </div>
         </form>
-      <form action="#" class="loginForm">
-          <input required type="text" placeholder="Username" id="userName">
-          <input required type="text" placeholder="Password" id="passWord">
+      <form id="loginForm" class="loginForm">
+          <input required type="text" placeholder="Username" id="userName" name="username">
+          <input required type="text" placeholder="Password" id="passWord" name="password">
           <div class="indexButton">
              <button type="submit" id="submitButton">Login</button>
           </div>
@@ -60,7 +60,7 @@
 
 
 
-<div id="homePageDiv" class="">
+<div id="homePageDiv" class="hidden">
 	<div class="navBar">
     	<a class="logo"><h1>GameBro ReViews</h1></a>
     <nav role="navigation" class="topNav">
@@ -81,10 +81,10 @@
     <div class="modal-main">
       <div class="formDiv">
         <form id="reviewForm" class="postEdit">
-          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle">
-          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle">
+          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle" maxlength="30">
+          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle" maxlength="30">
           <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL">
-          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform">
+          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform" maxlength="30">
           <input required type="number" name="gameScore" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore">
           <div class="reviewArea">
           <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" placeholder="Type Your Review Here!" id="gameReview"></textarea>
@@ -138,7 +138,7 @@
 
 <div id="mainReviewPage" class="hidden">
   <div class="navBar2">
-      <a href="index.html"><button class="backButton">Back To Homepage</button></a>
+      <button class="backButton">Back To Homepage</button></a>
       <a class="logo2"><h1>GameBro ReViews</h1></a>
     <nav role="navigation" class="topNav">
       <div class="loginText">

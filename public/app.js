@@ -95,8 +95,8 @@ function renderReviewData(result){
 
 
 
-
-
+let authURL = '/auth/login'
+let userURL = '/users'
 let apiURL = '/reviews';
 
 function getReviewData(callback) {
@@ -119,7 +119,10 @@ function displayReviews(data){
 	// $(".loginText").html(loginResults);
 	$(".flexParent").append(reviewResults);
   reviewPage();
+  backButton();
   watchSubmit();
+  createUser();
+  userLogin();
 }
 
 
@@ -153,10 +156,8 @@ $('.box').on('click',function(){
 };
 
 function homeRedirect(){
-    window.location.href='/index.html';
+  window.location.href='/index.html';
 };
-
-
 
 
 
@@ -177,6 +178,74 @@ function watchSubmit() {
   };
   $.ajax(settings);
   });
+}
+
+
+//********************
+function hideFormOnLogin(){
+  alertLoginSuccess()
+  $('#loginDivMain').addClass('hidden');
+  $('#homePageDiv').removeClass('hidden');
+}
+
+function alertUserCreated(){
+  alert("Account Created")
+}
+
+function alertLoginSuccess(){
+  alert("Login Successful")
+}
+
+function alertPost(){
+  alert("Review Posted")
+}
+//*******************************
+
+
+
+//CREATE USER SUBMIT
+function createUser() {
+  $('#createForm').submit(function(event) {
+    event.preventDefault();
+
+  let formValues = $(this).serializeArray();
+
+  const settings = {
+    data:formValues,
+    dataType: "json",
+    crossDomain: true,
+    type: 'POST',
+    url: userURL,
+    success: alertUserCreated
+  };
+  $.ajax(settings);
+  });
+}
+
+// USER LOGIN SUBMIT
+function userLogin() {
+  $('#loginForm').submit(function(event) {
+    event.preventDefault();
+
+  let formValues = $(this).serializeArray();
+
+  const settings = {
+    data:formValues,
+    dataType: "json",
+    crossDomain: true,
+    type: 'POST',
+    url: authURL,
+    success: hideFormOnLogin
+  };
+  $.ajax(settings);
+  });
+}
+
+function backButton(){
+  $('.backButton').on('click',function(){
+  $('#mainReviewPage').addClass('hidden');
+  $('#homePageDiv').removeClass('hidden');
+});
 }
 
 

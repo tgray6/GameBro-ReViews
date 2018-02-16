@@ -157,8 +157,14 @@ h4{
   #mainReviewPage{
   margin-top: 200px;
   }
+
 }
 
+/*@media screen and (max-width: 500px) {
+  .postInfo{
+    display: none;
+  }
+}*/
 
 @media screen and (min-width: 550px){
 .loginDiv{
