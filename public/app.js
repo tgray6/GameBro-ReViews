@@ -117,10 +117,12 @@ function getReviewData(callback) {
 function displayReviews(data){
   console.log(data);
   lastData = data.reviews;
+  localStorage.setItem("storedReviews", JSON.stringify(lastData))
+  console.log(localStorage.getItem("storedReviews"))
 	// const loginResults = data.reviews.map(renderLoginData);
 	const reviewResults = data.reviews.map(renderHomeData);
 	// $(".loginText").html(loginResults);
-	$(".flexParent").append(reviewResults);
+	$(".flexParent").html(reviewResults);
   reviewPage();
   backButton();
   watchSubmit();
@@ -141,7 +143,7 @@ function getAndDisplayReviews(){
 
 $(function(){
   backButton();
-  watchSubmit();
+  // watchSubmit();
   createUser();
   userLogin();
   reviewPage()
@@ -172,15 +174,17 @@ $('.box').on('click',function(){
   });
 };
 
-function homeRedirect(){
-  window.location.href='/index.html';
-};
+
+
+
+
 
 
 
 //FORM SUBMIT
 function watchSubmit() {
   $('#reviewForm').submit(function(event) {
+    $('.modalParent').addClass('hidden');
     event.preventDefault();
 
   let formValues = $(this).serializeArray();
@@ -191,11 +195,21 @@ function watchSubmit() {
     crossDomain: true,
     type: 'POST',
     url: apiURL,
-    success: homeRedirect
+    success: getAndDisplayReviews
   };
   $.ajax(settings);
   });
 }
+
+
+
+
+
+
+
+
+
+
 
 
 //********************
