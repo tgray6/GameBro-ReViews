@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 
 
 
-app.get('/reviews', (req, res) =>{
+app.get('/reviews', jwtAuth, (req, res) =>{
 	PostReview
 		.find()
     .sort({'created': 'desc'})

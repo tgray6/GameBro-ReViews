@@ -15,7 +15,7 @@
 //     ]
 // };
 
-
+globalToken = null;
 
 const scoreURL = [
 "/images/zero.png",
@@ -102,6 +102,9 @@ let apiURL = '/reviews';
 function getReviewData(callback) {
   const settings = {
     dataType: "json",
+        headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
     crossDomain: true,
     type: 'GET',
     url: apiURL,
@@ -130,8 +133,22 @@ function getAndDisplayReviews(){
 	getReviewData(displayReviews);
 }
 
+// $(function(){
+// 	getAndDisplayReviews();
+// })
+
+
+
 $(function(){
-	getAndDisplayReviews();
+  backButton();
+  watchSubmit();
+  createUser();
+  userLogin();
+  reviewPage()
+  if (globalToken !== null){
+  $('#loginDivMain').addClass('hidden');
+  $('#homePageDiv').removeClass('hidden');
+  }
 })
 
 
@@ -182,8 +199,11 @@ function watchSubmit() {
 
 
 //********************
-function hideFormOnLogin(){
+function afterLogin(data){
+  globalToken=data.authToken;
+  console.log(globalToken);
   alertLoginSuccess()
+  getAndDisplayReviews()
   $('#loginDivMain').addClass('hidden');
   $('#homePageDiv').removeClass('hidden');
 }
@@ -212,6 +232,9 @@ function createUser() {
 
   const settings = {
     data:formValues,
+        headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
     dataType: "json",
     crossDomain: true,
     type: 'POST',
@@ -231,11 +254,14 @@ function userLogin() {
 
   const settings = {
     data:formValues,
+    headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
     dataType: "json",
     crossDomain: true,
     type: 'POST',
     url: authURL,
-    success: hideFormOnLogin
+    success: afterLogin
   };
   $.ajax(settings);
   });
