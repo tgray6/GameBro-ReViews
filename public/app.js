@@ -49,6 +49,7 @@ function renderHomeData(result){
             		<div class="postInfo"> 
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
+                    <p class="authorName">${result.author}</p>
             		</div class="scoreInfo"> <img class="scorePicture" src= "${scoreURL[result.gameScore]}">
 
           		</div>
@@ -64,7 +65,7 @@ function renderReviewData(result){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${result.postTitle}</h2>
       <h3 class="gameTitle">${result.gameTitle}</h3>
-      <h4 class="authorName"></h4>
+      <h4 class="authorName">${result.author}</h4>
 
       <div class="flexParent2">
         <div class="flex-container">
@@ -86,7 +87,7 @@ function renderReviewData(result){
                
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
-               <h4 class="authorName"></h4>
+               <h4 class="authorName">${result.author}</h4>
             </div>
               <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}">
               </div>
@@ -116,14 +117,21 @@ function getReviewData(callback) {
 
 
 function displayReviews(data){
-  console.log(data);
+  // console.log(data);
+  // console.log(globalAuthor);
   lastData = data.reviews;
   localStorage.setItem("storedReviews", JSON.stringify(lastData))
-  console.log(localStorage.getItem("storedReviews"))
-	// const loginResults = data.reviews.map(renderLoginData);
+  // console.log(localStorage.getItem("storedReviews"))
+	
 	const reviewResults = data.reviews.map(renderHomeData);
-	// $(".loginText").html(loginResults);
-	$(".flexParent").html(reviewResults);
+  $(".flexParent").html(reviewResults);
+
+	
+  // const loginResults = data.reviews.map(renderLoginData);
+
+  // $(".authorName").html(globalAuthor);
+	$(".loginText").html(globalFirst + " " + globalLast);
+
   reviewPage();
   backButton();
   watchSubmit();
@@ -136,10 +144,6 @@ function getAndDisplayReviews(){
 	getReviewData(displayReviews);
 }
 
-// $(function(){
-// 	getAndDisplayReviews();
-// })
-
 
 
 $(function(){
@@ -148,10 +152,10 @@ $(function(){
   createUser();
   userLogin();
   reviewPage()
-  if (globalToken !== null){
-  $('#loginDivMain').addClass('hidden');
-  $('#homePageDiv').removeClass('hidden');
-  }
+  // if (globalToken !== null){
+  // $('#loginDivMain').addClass('hidden');
+  // $('#homePageDiv').removeClass('hidden');
+  // }
 })
 
 
@@ -163,9 +167,9 @@ $(function(){
 //INDIVIDUAL REVIEW RENDERING ON CLICK
 function reviewPage(){
 $('.box').on('click',function(){
-  $('#homePageDiv').addClass('hidden');
-  $('#mainReviewPage').removeClass('hidden');
-  console.log(lastData);
+  fadeOutHome()
+  fadeInReviews()
+  // console.log(lastData);
   let reviewZ = lastData.find(review=> review.id == this.id);
   console.log(reviewZ);
   let reviewResults2 = renderReviewData(reviewZ)
@@ -189,7 +193,16 @@ function watchSubmit() {
     event.preventDefault();
 
   let formValues = $(this).serializeArray();
-
+  formValues.push({
+    name: "firstName",
+    value: globalFirst
+    }
+  )
+  formValues.push({
+    name: "lastName",
+    value: globalLast
+  })
+  console.log(formValues);
   const settings = {
     data:formValues,
     dataType: "json",
@@ -212,6 +225,9 @@ $(function () {
             if (x.status == 401) {
                 alert("Incorrect Username or Password");
             }
+            else if (x.status ==422){
+              alert("Username already exists");
+            }
         }
     });
 });
@@ -225,14 +241,21 @@ $(function () {
 //********************
 function afterLogin(data){
   globalToken=data.authToken;
-  console.log(globalToken);
+  globalFirst=data.firstName;
+  globalLast=data.lastName;
+  console.log(globalFirst);
+  console.log(globalLast);
+  // console.log(globalToken);
   alertLoginSuccess()
   getAndDisplayReviews()
-  $('#loginDivMain').addClass('hidden');
+  timeoutLogin()
+  // $('#loginDivMain').addClass('hidden');
+  $('#homePageDiv').fadeIn(3000);
   $('#homePageDiv').removeClass('hidden');
 }
 
 function alertUserCreated(){
+  location.reload();
   alert("Account Created")
 }
 
@@ -278,7 +301,7 @@ function userLogin() {
   let formValues = $(this).serializeArray();
 
   const settings = {
-    data:formValues,
+    data:formValues, 
     headers: {
     'Authorization': 'Bearer ' + globalToken
   },
@@ -294,8 +317,8 @@ function userLogin() {
 
 function backButton(){
   $('.backButton').on('click',function(){
-  $('#mainReviewPage').addClass('hidden');
-  $('#homePageDiv').removeClass('hidden');
+  fadeOutReviews();
+  fadeInHome();
 });
 }
 
@@ -306,6 +329,38 @@ function backButton(){
 
 
 
+//FADING EFFECT
+function timeoutLogin(){
+ $("#loginDivMain").fadeOut(1000, function() {
+  $(this).hide();
+    });
+}
+
+function fadeInReviews(){
+ $("#mainReviewPage").fadeIn(1000, function() {
+  $(this).removeClass('hidden');
+    });
+}
+
+function fadeOutReviews(){
+ $("#mainReviewPage").fadeOut(1000, function() {
+  $(this).hide();
+    });
+}
+
+
+
+function fadeInHome(){
+ $("#homePageDiv").fadeIn(3000, function() {
+  $(this).show();
+    });
+}
+
+function fadeOutHome(){
+ $("#homePageDiv").fadeOut(1000, function() {
+  $(this).hide();
+    });
+}
 
 
 

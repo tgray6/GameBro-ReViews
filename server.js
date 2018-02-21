@@ -80,7 +80,8 @@ app.post('/reviews', (req, res) => {
   console.log(req.body)
 	PostReview
 		.create({
-			author: req.body.author,
+			author: {firstName: req.body.firstName,
+               lastName: req.body.lastName},
 			postTitle: req.body.postTitle,
 			gameTitle: req.body.gameTitle,
 			gamePlatform: req.body.gamePlatform,
