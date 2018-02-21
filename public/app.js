@@ -35,7 +35,7 @@ const scoreURL = [
 //renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
 function renderLoginData(result){
 	return `
-	<p class="loggedIn">Logged in as: ${result.author.firstName} ${result.author.lastName}</p>`
+	<p class="loggedIn">Logged in as: ${result.authorName}</p>`
 }
 
 
@@ -64,6 +64,7 @@ function renderReviewData(result){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${result.postTitle}</h2>
       <h3 class="gameTitle">${result.gameTitle}</h3>
+      <h4 class="authorName"></h4>
 
       <div class="flexParent2">
         <div class="flex-container">
@@ -85,6 +86,7 @@ function renderReviewData(result){
                
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
+               <h4 class="authorName"></h4>
             </div>
               <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}">
               </div>
@@ -92,7 +94,6 @@ function renderReviewData(result){
         </div>
 </div>`
 }
-
 
 
 let authURL = '/auth/login'
@@ -204,7 +205,16 @@ function watchSubmit() {
 
 
 
-
+$(function () {
+    //setup ajax error handling
+    $.ajaxSetup({
+        error: function (x, status, error) {
+            if (x.status == 401) {
+                alert("Incorrect Username or Password");
+            }
+        }
+    });
+});
 
 
 
@@ -232,6 +242,7 @@ function alertLoginSuccess(){
 
 function alertPost(){
   alert("Review Posted")
+
 }
 //*******************************
 
@@ -289,58 +300,6 @@ function backButton(){
 }
 
 
-// function watchSubmit() {
-//   $('#reviewForm').submit(function(event) {
-//     event.preventDefault();
-
-//     //postTitle FORM
-//     let postTitle = $(event.currentTarget).find('#postTitle').val();
-//     let postValue = postTitle.val();
-//     postTitle.val("");
-
-//     //gameTitle FORM
-//     let gameTitle = $(event.currentTarget).find('#postGameTitle').val();
-//     let gameValue = gameTitle.val();
-//     gameTitle.val("");
-
-//     //gamePlatform FORM
-//     let gamePlatform = $(event.currentTarget).find('#postPlatform').val();
-//     let platformValue = gamePlatform.val();
-//     gamePlatform.val("")
-
-//     //gameScore FORM
-//     let gameScore = $(event.currentTarget).find('#postScore').val();
-//     let scoreValue = gameScore.val();
-//     gameScore.val("")
-
-//     //gameImage FORM
-//     let gameImage = $(event.currentTarget).find('#postGameURL').val();
-//     let imageValue = gameImage.val();
-//     gameImage.val("");
-
-//     //postReview FORM
-//     let postReview = $(event.currentTarget).find('#gameReview').val();
-//     let reviewValue = postReview.val();
-//     postReview.val("")
-
-//   const settings = {
-//     data:{
-//       postTitle: postTitle,
-//       gameTitle: gameTitle,
-//       gamePlatform: gamePlatform,
-//       gameScore: gameScore,
-//       gameImage: gameImage,
-//       postReview: postReview
-//     },
-//     dataType: "json",
-//     crossDomain: true,
-//     type: 'POST',
-//     url: apiURL,
-//     success: homeRedirect
-//   };
-//   $.ajax(settings);
-//   });
-// }
 
 
 
@@ -355,29 +314,16 @@ function backButton(){
 
 
 
-//once API is up and running, this should be the only function we need to change (getReviewData)
 
 
-// function getReviewData(callback) {
-//  setTimeout(function(){callback(mockReviewData)}, 100);
-// }
 
-// function displayReviews(data){
-//   const loginResults = data.recentReviews.map(renderLoginData);
-//   const reviewResults = data.recentReviews.map(renderHomeData);
-//   const reviewResults2 = data.recentReviews.map(renderReviewData);
-//   $(".loginText").html(loginResults);
-//   $(".flexParent").html(reviewResults);
-//   $(".mainReviewDiv").html(reviewResults2);
-// }
 
-// function getAndDisplayReviews(){
-//   getReviewData(displayReviews);
-// }
 
-// $(function(){
-//   getAndDisplayReviews()
-// })
+
+
+
+
+
 
 
 

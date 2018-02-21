@@ -76,8 +76,6 @@ app.get('/reviews', jwtAuth, (req, res) =>{
 
 
 
-
-
 app.post('/reviews', (req, res) => {
   console.log(req.body)
 	PostReview

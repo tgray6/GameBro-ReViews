@@ -17,9 +17,9 @@ const reviewSchema = mongoose.Schema({
 	created: {type: Date, default: Date.now}
 });
 
-reviewSchema.virtual('authorName').get(function() {
-  return `${this.author.firstName} ${this.author.lastName}`.trim();
-});
+// reviewSchema.virtual('authorName').get(function() {
+//   return `${this.author.firstName} ${this.author.lastName}`.trim();
+// });
 
 reviewSchema.methods.serialize = function() {
 	return {
@@ -55,6 +55,10 @@ const UserSchema = mongoose.Schema({
   },
   firstName: {type: String},
   lastName: {type: String}
+});
+
+UserSchema.virtual('authorName').get(function() {
+  return `${this.firstName} ${this.lastName}`.trim();
 });
 
 UserSchema.methods.userserialize = function() {
