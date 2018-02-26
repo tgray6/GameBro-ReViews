@@ -37,6 +37,10 @@ body{
   width: 50px;
 }
 
+.loginText{
+  padding-bottom: 10px;
+  color: white;
+}
 
 h1{
   font-family: 'Audiowide', cursive;
@@ -58,6 +62,15 @@ h4{
 
 .loggedIn{
   color: black;
+}
+
+.authorName{
+  color: white;
+}
+
+.authorName1{
+  color: black;
+  font-size: 20px;
 }
 
 .navBar{
@@ -125,7 +138,7 @@ h4{
   position: relative;
   font-size: 20px;
   font-weight: normal;
-  top: 15px;
+  top: 5px;
 }
 
 
@@ -172,6 +185,35 @@ h4{
 }
 }
 
+@media screen and (max-width: 640px){
+img.scorePicture{
+  max-width: 100% !important;
+  height: 100px !important;
+}
+
+img.scoreImage2{
+  max-width: 100%;
+  height: 100px;
+}
+
+h2.postTitle{
+  font-size: 25px;
+}
+h3.gameTitle{
+  font-size: 20px;
+}
+h4.authorName1{
+ font-size: 15px;
+}
+}
+
+
+
+
+
+
+
+
 
 
 .backButton{
@@ -189,7 +231,7 @@ h4{
 }
 
 .reviewOverviewTwo{
-  margin-top: 175px;
+  margin-top: 155px;
   text-align: center;
 }
 
@@ -212,10 +254,10 @@ h4{
   justify-content: space-between;
   display: flex;
   flex-direction: row;
-  max-width: 100%;
-  width: 650px;
+  max-width: 650px;
+  width: 100%;
   min-height: 200px;
-  max-height: 100%;
+  max-height: 200px;
   padding-top: 20px;
   padding-bottom: 25px;
   padding-left: 10px;
@@ -373,17 +415,15 @@ header {
 }
 
 .gamePicture{
-  max-height: 150px;
+  max-height: 130px;
   max-width: 100%;
-  height: auto;
   border: 1px solid black;
   box-shadow: 0 2px 4px 0 black;
 }
 
 .gameImage2{
-  max-height: 150px;
+  max-height: 130px;
   max-width: 100%;
-  height: auto;
   border: 1px solid black;
   box-shadow: 0 2px 4px 0 black;
 }
@@ -404,7 +444,7 @@ header {
                 inset 0px -11px 8px -10px black
 }
 
-.scorePicture{
+img.scorePicture{
   max-width: 100%;
   height: 160px;
 }
@@ -412,6 +452,7 @@ header {
 .scoreImage2{
   max-width: 100%;
   height: 130px;
+  width: 130px;
 }
 
 .footerImage{

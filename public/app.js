@@ -32,11 +32,6 @@ const scoreURL = [
 ]
 
 
-//renderLoginData is to show your firstName and lastName in the header on both index.html and review.html
-function renderLoginData(result){
-	return `
-	<p class="loggedIn">Logged in as: ${result.authorName}</p>`
-}
 
 
 //HOMEPAGE DATA (homepage.html)
@@ -65,7 +60,7 @@ function renderReviewData(result){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${result.postTitle}</h2>
       <h3 class="gameTitle">${result.gameTitle}</h3>
-      <h4 class="authorName">${result.author}</h4>
+      <h4 class="authorName1">${result.author}</h4>
 
       <div class="flexParent2">
         <div class="flex-container">
@@ -130,7 +125,7 @@ function displayReviews(data){
   // const loginResults = data.reviews.map(renderLoginData);
 
   // $(".authorName").html(globalAuthor);
-	$(".loginText").html(globalFirst + " " + globalLast);
+	$(".loginText").html("Logged in as :" + globalFirst + " " + globalLast);
 
   reviewPage();
   backButton();
