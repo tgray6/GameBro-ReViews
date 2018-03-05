@@ -143,14 +143,9 @@ function getAndDisplayReviews(){
 
 $(function(){
   backButton();
-  // watchSubmit();
   createUser();
   userLogin();
   reviewPage()
-  // if (globalToken !== null){
-  // $('#loginDivMain').addClass('hidden');
-  // $('#homePageDiv').removeClass('hidden');
-  // }
 })
 
 
@@ -238,8 +233,8 @@ function afterLogin(data){
   globalToken=data.authToken;
   globalFirst=data.firstName;
   globalLast=data.lastName;
-  console.log(globalFirst);
-  console.log(globalLast);
+  // console.log(globalFirst);
+  // console.log(globalLast);
   // console.log(globalToken);
   alertLoginSuccess()
   getAndDisplayReviews()

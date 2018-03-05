@@ -90,7 +90,6 @@ app.post('/reviews', (req, res) => {
 			postReview: req.body.postReview
 		})
 		.then(reviews => res.status(201).json(reviews.serialize()))
-    // res.redirect('/homepage.html');
 });
 
 
