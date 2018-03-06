@@ -49,7 +49,6 @@ function renderHomeData(result){
 
           		</div>
         	</div>
-          <button type="submit" id="submitButton3" class= "hidden">TEST</button>
 	`
 }
 
@@ -130,9 +129,10 @@ function displayReviews(data){
 
   reviewPage();
   backButton();
-  watchSubmit();
   createUser();
   userLogin();
+  postButtonUnhide();
+  $('#reviewForm').trigger("reset");
 }
 
 
@@ -146,7 +146,8 @@ $(function(){
   backButton();
   createUser();
   userLogin();
-  reviewPage()
+  reviewPage();
+  watchSubmit();
 })
 
 
@@ -182,6 +183,7 @@ function watchSubmit() {
   $('#reviewForm').submit(function(event) {
     $('.modalParent').addClass('hidden');
     event.preventDefault();
+
 
   let formValues = $(this).serializeArray();
   formValues.push({
@@ -320,7 +322,12 @@ function backButton(){
 }
 
 
-
+function postButtonUnhide(){
+  $('.postButton').on('click', function(){
+    $('.modalParent').removeClass('hidden');
+  })
+  
+}
 
 
 
@@ -358,9 +365,6 @@ function fadeOutHome(){
   $(this).hide();
     });
 }
-
-
-
 
 
 
