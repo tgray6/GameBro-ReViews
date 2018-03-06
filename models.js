@@ -14,7 +14,7 @@ const reviewSchema = mongoose.Schema({
 	gameScore: {type: Number, required: true},
 	gameImage: {type: String, required: true},
 	postReview: {type: String, required: true},
-	created: {type: Date, default: Date.now}
+	created: {type: Date, default: Date.now},
 });
 
 reviewSchema.virtual('authorName').get(function() {
@@ -65,7 +65,8 @@ UserSchema.methods.userserialize = function() {
   return {
     username: this.username,
     firstName: this.firstName,
-    lastName: this.lastName
+    lastName: this.lastName,
+    userID: this.id
   };
 };
 

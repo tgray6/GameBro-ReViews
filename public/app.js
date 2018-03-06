@@ -49,6 +49,7 @@ function renderHomeData(result){
 
           		</div>
         	</div>
+          <button type="submit" id="submitButton3" class= "hidden">TEST</button>
 	`
 }
 
@@ -192,6 +193,10 @@ function watchSubmit() {
     name: "lastName",
     value: globalLast
   })
+  formValues.push({
+    name: "userID",
+    value: globalID
+  })
   console.log(formValues);
   const settings = {
     data:formValues,
@@ -233,6 +238,8 @@ function afterLogin(data){
   globalToken=data.authToken;
   globalFirst=data.firstName;
   globalLast=data.lastName;
+  globalID=data.userID;
+  console.log(globalID);
   // console.log(globalFirst);
   // console.log(globalLast);
   // console.log(globalToken);
