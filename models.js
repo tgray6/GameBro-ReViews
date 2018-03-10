@@ -8,6 +8,7 @@ const reviewSchema = mongoose.Schema({
 		firstName: String,
 		lastName: String
 	},
+	author_id: {type: String, required: true},
 	postTitle: {type: String, required: true},
 	gameTitle: {type: String, required: true},
 	gamePlatform: {type: String, required: true},
@@ -25,6 +26,7 @@ reviewSchema.methods.serialize = function() {
 	return {
 		id: this._id,
 		author: this.authorName,
+		author_id: this.author_id,
 		postTitle: this.postTitle,
 		gameTitle: this.gameTitle,
 		gamePlatform: this.gamePlatform,

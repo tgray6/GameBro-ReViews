@@ -82,6 +82,7 @@ app.post('/reviews', (req, res) => {
 		.create({
 			author: {firstName: req.body.firstName,
                lastName: req.body.lastName},
+      author_id: req.body.userID,
 			postTitle: req.body.postTitle,
 			gameTitle: req.body.gameTitle,
 			gamePlatform: req.body.gamePlatform,
@@ -95,32 +96,70 @@ app.post('/reviews', (req, res) => {
 
 
 //PUT endpoint
-app.put('/:id', (req, res) => {
-  const updated = {};
-  const updatedFields = ["postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
-    updatedFields.forEach(field => {
-    if (field in req.body) {
-      updated[field] = req.body[field];
-    }
-  });
+// app.put('/reviews/:id', (req, res) => {
+//   const updated = {};
+//   const updatedFields = ["postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
+//     updatedFields.forEach(field => {
+//     if (field in req.body) {
+//       updated[field] = req.body[field];
+//     }
+//   });
 
+//   PostReview
+//     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+//     .then(updatedReview => res.status(204).end())
+//     .catch(err => res.status(500).json({message: "Something Broke"}));
+// });
+
+app.put('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
-    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
-    .then(updatedReview => res.status(204).end())
-    .catch(err => res.status(500).json({message: "Something Broke"}));
+    .findById(req.params.id)
+    .then(review => {
+      console.log(review.author_id);
+      console.log(req.user);
+        if(review.author_id!==req.user.userID){
+          console.log("Ids don't match");
+          res.status(403).json({message: `${review.author_id} does not match ${req.user.userID}`});
+          return null;
+        }
+        const updated = {};
+        const updatedFields = ["postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
+
+        updatedFields.forEach(field => {
+          if (field in req.body) {
+            updated[field] = req.body[field];
+          }
+        });
+      return PostReview.findByIdAndUpdate(req.params.id, {$set: updated}, {new:true});
+    })
+    .then(updatedReview => {if (updatedReview != null)
+      return res.status(200).json(updatedReview.serialize())})
+    .catch(err => res.status(500).json(err))
 });
 
 
 
 
 
-
 //DELETE ENDPOINT
-app.delete('/:id', (req, res) => {
+app.delete('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
-    .findByIdAndRemove(req.params.id)
-    .then(() => {
-      res.status(204).end()
+    .findById(req.params.id)
+    .then(review => {
+      console.log(review.author_id);
+      console.log(req.user);
+        if(review.author_id!==req.user.userID){
+          console.log("Ids don't match");
+          res.status(403).json({message: `${review.author_id} does not match ${req.user.userID}`});
+          return null;
+        }
+        else{
+          return PostReview
+          .findByIdAndRemove(req.params.id);
+        }
+    })
+    .then(deletedReview => {if (deletedReview != null)
+      return res.status(204)
     });
 });
 

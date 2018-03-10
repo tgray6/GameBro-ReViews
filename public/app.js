@@ -163,9 +163,9 @@ $('.box').on('click',function(){
   fadeInReviews()
   // console.log(lastData);
   let reviewZ = lastData.find(review=> review.id == this.id);
-  console.log(reviewZ);
+  // console.log(reviewZ);
   let reviewResults2 = renderReviewData(reviewZ)
-  console.log(reviewResults2);
+  // console.log(reviewResults2);
   $(".mainReviewDiv").html(reviewResults2);
   console.log(this.id);
   });
@@ -181,7 +181,7 @@ $('.box').on('click',function(){
 //FORM SUBMIT
 function watchSubmit() {
   $('#reviewForm').submit(function(event) {
-    $('.modalParent').addClass('hidden');
+    $('.modalParent').hide();
     event.preventDefault();
 
 
@@ -322,9 +322,12 @@ function backButton(){
 }
 
 
+
+
+
 function postButtonUnhide(){
   $('.postButton').on('click', function(){
-    $('.modalParent').removeClass('hidden');
+    $('.modalParent').show();
   })
   
 }
