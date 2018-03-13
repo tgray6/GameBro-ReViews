@@ -141,6 +141,13 @@ h4{
   top: 5px;
 }
 
+#editButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: normal;
+  top: 5px;
+}
+
 
 
 @media screen and (max-width: 950px) {

@@ -76,13 +76,13 @@ app.get('/reviews', jwtAuth, (req, res) =>{
 
 
 
-app.post('/reviews', (req, res) => {
+app.post('/reviews', jwtAuth, (req, res) => {
   console.log(req.body)
 	PostReview
 		.create({
 			author: {firstName: req.body.firstName,
                lastName: req.body.lastName},
-      author_id: req.body.userID,
+      author_id: req.user.userID,
 			postTitle: req.body.postTitle,
 			gameTitle: req.body.gameTitle,
 			gamePlatform: req.body.gamePlatform,
@@ -111,6 +111,8 @@ app.post('/reviews', (req, res) => {
 //     .catch(err => res.status(500).json({message: "Something Broke"}));
 // });
 
+
+//NEW PUT ENDPOINT
 app.put('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
     .findById(req.params.id)
@@ -159,7 +161,7 @@ app.delete('/reviews/:id', jwtAuth, (req, res) => {
         }
     })
     .then(deletedReview => {if (deletedReview != null)
-      return res.status(204)
+      return res.sendStatus(204);
     });
 });
 

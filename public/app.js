@@ -94,6 +94,7 @@ function renderReviewData(result){
 
 let authURL = '/auth/login'
 let userURL = '/users'
+let editURL = '/reviews/'
 let apiURL = '/reviews';
 
 function getReviewData(callback) {
@@ -133,6 +134,7 @@ function displayReviews(data){
   userLogin();
   postButtonUnhide();
   $('#reviewForm').trigger("reset");
+  $('#deleteButton').hide();
 }
 
 
@@ -148,6 +150,8 @@ $(function(){
   userLogin();
   reviewPage();
   watchSubmit();
+  editSubmit();
+  editButton();
 })
 
 
@@ -164,14 +168,96 @@ $('.box').on('click',function(){
   // console.log(lastData);
   let reviewZ = lastData.find(review=> review.id == this.id);
   // console.log(reviewZ);
-  let reviewResults2 = renderReviewData(reviewZ)
+  let reviewResults2 = renderReviewData(reviewZ);
   // console.log(reviewResults2);
   $(".mainReviewDiv").html(reviewResults2);
-  console.log(this.id);
+  // console.log(this.id);
+  let authorData = reviewZ.author_id;
+
+  editURL = editURL+this.id;
+  console.log(editURL);
+  let editSettings = {
+    "postTitle": reviewZ.postTitle,
+    "gameTitle": reviewZ.gameTitle,
+    "gamePlatform": reviewZ.gamePlatform,
+    "gameScore": reviewZ.gameScore,
+    "gameImage": reviewZ.gameImage,
+    "postReview": reviewZ.postReview
+  }
+
+  console.log(editSettings);
+
+
+  if( authorData === globalID){
+    $('#editButton').removeClass('hidden');
+    $('#deleteButton').show();
+      editForm('#reviewForm', editSettings);
+  }
+  else{
+    $('#editButton').addClass('hidden');
+    $('#deleteButton').hide();
+  }
   });
 };
 
 
+
+
+
+
+
+
+
+
+
+
+
+//***************************NEW STUFF FOR EDIT/DELETE***********************
+function editButton(){
+  $('#editButton').on('click',function(){
+  fadeOutReviews();
+  fadeInHome();
+  // editForm();
+});
+}
+
+
+
+
+//edit form Fill Data-fills the form with the clicked review for edit
+function editForm(form, data){
+$.each(data, function(key, value){
+  $('[name='+key+']', form).val(value);
+});
+}
+
+
+//PUT
+function editSubmit() {
+  $('#reviewForm').submit(function(event) {
+    $('.modalParent').hide();
+    event.preventDefault();
+
+  let formValues = $(this).serializeArray();
+
+  const settings = {
+    data:formValues,
+    headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
+    dataType: "json",
+    crossDomain: true,
+    type: 'PUT',
+    url: editURL,
+    success: getAndDisplayReviews
+  };
+  $.ajax(settings);
+  });
+}
+
+
+
+//****************************************************************************
 
 
 
@@ -195,13 +281,16 @@ function watchSubmit() {
     name: "lastName",
     value: globalLast
   })
-  formValues.push({
-    name: "userID",
-    value: globalID
-  })
+  // formValues.push({
+  //   name: "userID",
+  //   value: globalID
+  // })
   console.log(formValues);
   const settings = {
     data:formValues,
+    headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
     dataType: "json",
     crossDomain: true,
     type: 'POST',
@@ -242,6 +331,8 @@ function afterLogin(data){
   globalLast=data.lastName;
   globalID=data.userID;
   console.log(globalID);
+  
+  // console.log(globalID);
   // console.log(globalFirst);
   // console.log(globalLast);
   // console.log(globalToken);
@@ -262,10 +353,6 @@ function alertLoginSuccess(){
   alert("Login Successful")
 }
 
-function alertPost(){
-  alert("Review Posted")
-
-}
 //*******************************
 
 
@@ -329,7 +416,6 @@ function postButtonUnhide(){
   $('.postButton').on('click', function(){
     $('.modalParent').show();
   })
-  
 }
 
 
@@ -364,7 +450,7 @@ function fadeInHome(){
 }
 
 function fadeOutHome(){
- $("#homePageDiv").fadeOut(1000, function() {
+ $("#homePageDiv").fadeOut(250, function() {
   $(this).hide();
     });
 }
@@ -417,11 +503,11 @@ const modalService = () => {
       modal.classList.toggle('is-open');
       
       // Close modal when hitting escape
-      body.addEventListener('keydown', (e) => {
-        if(e.keyCode === 27) {
-          modal.classList.remove('is-open')
-        }
-      });
+      // body.addEventListener('keydown', (e) => {
+      //   if(e.keyCode === 27) {
+      //     modal.classList.remove('is-open')
+      //   }
+      // });
     });
   }
 }
