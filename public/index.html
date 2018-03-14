@@ -145,11 +145,38 @@
       <div class="loginText">
         <p class="loggedIn"></p>
       </div>
-      <button class="postButton, hidden" id="editButton" data-modal-trigger="form">Edit Review</button>
+      <button class="hidden" id="editButton" data-modal-trigger="reviewForm2">Edit Review</button>
     </nav>
   </div>
 
-
+<div class="modalParent2">
+<section data-modal="reviewForm2" class="modal-wrapper">
+  <article class="modal-body">
+    <header>
+      <h2 class="modalHeader">Edit A Review</h2>
+    </header>
+    <div class="modal-main">
+      <div class="formDiv">
+        <form id="reviewForm2" class="postEdit">
+          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle2" maxlength="50">
+          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle2" maxlength="50">
+          <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL2">
+          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform2" maxlength="30">
+          <input required type="number" name="gameScore" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore2">
+          <div class="reviewArea">
+          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" placeholder="Type Your Review Here!" id="gameReview2"></textarea>
+          </div>
+          <div formButtons>
+            <button type="submit" id="submitButton4">Submit</button>
+            <button id="deleteButton2">Delete</button>
+            <button class="close">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
+</section>
+</div>
 
   <div class="mainReviewDiv">
 <!--   <section role="region">

@@ -133,8 +133,8 @@ function displayReviews(data){
   createUser();
   userLogin();
   postButtonUnhide();
-  $('#reviewForm').trigger("reset");
   $('#deleteButton').hide();
+  $('#reviewForm').trigger("reset");
 }
 
 
@@ -191,7 +191,7 @@ $('.box').on('click',function(){
   if( authorData === globalID){
     $('#editButton').removeClass('hidden');
     $('#deleteButton').show();
-      editForm('#reviewForm', editSettings);
+      editForm('#reviewForm2', editSettings);
   }
   else{
     $('#editButton').addClass('hidden');
@@ -215,9 +215,7 @@ $('.box').on('click',function(){
 //***************************NEW STUFF FOR EDIT/DELETE***********************
 function editButton(){
   $('#editButton').on('click',function(){
-  fadeOutReviews();
-  fadeInHome();
-  // editForm();
+  $('.modalParent2').show();
 });
 }
 
@@ -234,9 +232,11 @@ $.each(data, function(key, value){
 
 //PUT
 function editSubmit() {
-  $('#reviewForm').submit(function(event) {
-    $('.modalParent').hide();
-    event.preventDefault();
+  $('#reviewForm2').submit(function(event) {
+  $('.modalParent2').hide();
+  fadeOutReviews();
+  fadeInHome();
+  event.preventDefault();
 
   let formValues = $(this).serializeArray();
 
@@ -454,9 +454,6 @@ function fadeOutHome(){
   $(this).hide();
     });
 }
-
-
-
 
 
 
