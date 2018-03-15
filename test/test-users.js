@@ -380,7 +380,8 @@ describe('/users', function() {
             expect(res.body).to.have.keys(
               'username',
               'firstName',
-              'lastName'
+              'lastName',
+              "userID"
             );
             expect(res.body.username).to.equal(username);
             expect(res.body.firstName).to.equal(firstName);
@@ -415,7 +416,8 @@ describe('/users', function() {
             expect(res.body).to.have.keys(
               'username',
               'firstName',
-              'lastName'
+              'lastName',
+              "userID"
             );
             expect(res.body.username).to.equal(username);
             expect(res.body.firstName).to.equal(firstName);

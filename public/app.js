@@ -78,7 +78,7 @@ function renderReviewData(result){
           <div class="box2"> 
             <div> <img class="gameImage2" src= ${result.gameImage}>
             </div>
-            <div id="postInfo2"> 
+            <div id="postInfo2">
                
                <p class="gameTitle">${result.gameTitle}</p> 
                <p class="platform">${result.gamePlatform}</p>
@@ -96,6 +96,10 @@ let authURL = '/auth/login'
 let userURL = '/users'
 let editURL = '/reviews/'
 let apiURL = '/reviews';
+
+function resetURL(){
+  editURL = '/reviews/';
+}
 
 function getReviewData(callback) {
   const settings = {
@@ -135,6 +139,7 @@ function displayReviews(data){
   postButtonUnhide();
   $('#deleteButton').hide();
   $('#reviewForm').trigger("reset");
+  resetURL();
 }
 
 
@@ -152,6 +157,8 @@ $(function(){
   watchSubmit();
   editSubmit();
   editButton();
+  deleteSubmit();
+  closeButton();
 })
 
 
@@ -190,12 +197,10 @@ $('.box').on('click',function(){
 
   if( authorData === globalID){
     $('#editButton').removeClass('hidden');
-    $('#deleteButton').show();
       editForm('#reviewForm2', editSettings);
   }
   else{
     $('#editButton').addClass('hidden');
-    $('#deleteButton').hide();
   }
   });
 };
@@ -248,6 +253,33 @@ function editSubmit() {
     dataType: "json",
     crossDomain: true,
     type: 'PUT',
+    url: editURL,
+    success: getAndDisplayReviews
+  };
+  $.ajax(settings);
+  });
+}
+
+
+
+
+
+//DELETE
+function deleteSubmit() {
+  $('#deleteButton2').on('click',function(event) {
+  $('.modalParent2').hide();
+  fadeOutReviews();
+  fadeInHome();
+  event.preventDefault();
+
+
+  const settings = {
+    headers: {
+    'Authorization': 'Bearer ' + globalToken
+  },
+    dataType: "json",
+    crossDomain: true,
+    type: 'DELETE',
     url: editURL,
     success: getAndDisplayReviews
   };
@@ -405,6 +437,7 @@ function backButton(){
   $('.backButton').on('click',function(){
   fadeOutReviews();
   fadeInHome();
+  resetURL();
 });
 }
 
@@ -456,7 +489,13 @@ function fadeOutHome(){
 }
 
 
-
+function closeButton(){
+  $('.close').on('click', function(event){
+    event.preventDefault();
+  $('.modalParent').hide();
+  $('.modalParent2').hide();
+  })
+}
 
 
 
