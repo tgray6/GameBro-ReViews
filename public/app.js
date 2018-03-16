@@ -377,12 +377,14 @@ function afterLogin(data){
 }
 
 function alertUserCreated(){
-  location.reload();
-  alert("Account Created")
+  // alert("Account Created")
+  $('.createMsgModal').show();
+  setTimeout(window.location.reload.bind(window.location), 1500);
 }
 
 function alertLoginSuccess(){
-  alert("Login Successful")
+  // alert("Login Successful")
+  $('.loginMsgModal').show();
 }
 
 //*******************************

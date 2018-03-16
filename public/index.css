@@ -145,7 +145,7 @@ h4{
   position: relative;
   font-size: 20px;
   font-weight: normal;
-  top: 5px;
+  top: 32px;
 }
 
 
@@ -155,13 +155,15 @@ h4{
   position: relative;
   }
   .postButton{
-    top:0px;
+    left: -6px;
+    top:3px;
 
     font-size: 10px;
   }
 
   #editButton{
-    top:-5px;
+    left: 3px;
+    top:-7px;
 
     font-size: 10px;
   }
@@ -578,4 +580,37 @@ button:hover {
 button:active {
   box-shadow: 0 2px 0 gray;
   transform: translateY(3px);
+}
+
+
+
+
+
+.loginMsgModal, .createMsgModal {
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid black;
+    box-shadow: 0 2px 4px 0 black;
+    display: none;  /*Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 250px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.loginMessage, .createMessage {
+    font-weight: bold;
+    font-family: 'Audiowide', cursive;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 200px;
 }
