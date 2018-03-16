@@ -130,7 +130,7 @@ function displayReviews(data){
   // const loginResults = data.reviews.map(renderLoginData);
 
   // $(".authorName").html(globalAuthor);
-	$(".loginText").html("Logged in as :" + globalUser.firstName + " " + globalUser.lastName);
+	$(".loginText").html("Logged in as : " + globalUser.firstName + " " + globalUser.lastName);
 
   reviewPage();
   backButton();
@@ -304,15 +304,15 @@ function watchSubmit() {
 
 
   let formValues = $(this).serializeArray();
-  // formValues.push({
-  //   name: "firstName",
-  //   value: globalFirst
-  //   }
-  // )
-  // formValues.push({
-  //   name: "lastName",
-  //   value: globalLast
-  // })
+  formValues.push({
+    name: "firstName",
+    value: globalUser.firstName
+    }
+  )
+  formValues.push({
+    name: "lastName",
+    value: globalUser.lastName
+  })
   // formValues.push({
   //   name: "userID",
   //   value: globalID
