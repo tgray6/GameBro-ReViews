@@ -130,7 +130,7 @@ function displayReviews(data){
   // const loginResults = data.reviews.map(renderLoginData);
 
   // $(".authorName").html(globalAuthor);
-	$(".loginText").html("Logged in as :" + globalFirst + " " + globalLast);
+	$(".loginText").html("Logged in as :" + globalUser.firstName + " " + globalUser.lastName);
 
   reviewPage();
   backButton();
@@ -195,7 +195,7 @@ $('.box').on('click',function(){
   console.log(editSettings);
 
 
-  if( authorData === globalID){
+  if( authorData === globalUser.userID){
     $('#editButton').removeClass('hidden');
       editForm('#reviewForm2', editSettings);
   }
@@ -304,15 +304,15 @@ function watchSubmit() {
 
 
   let formValues = $(this).serializeArray();
-  formValues.push({
-    name: "firstName",
-    value: globalFirst
-    }
-  )
-  formValues.push({
-    name: "lastName",
-    value: globalLast
-  })
+  // formValues.push({
+  //   name: "firstName",
+  //   value: globalFirst
+  //   }
+  // )
+  // formValues.push({
+  //   name: "lastName",
+  //   value: globalLast
+  // })
   // formValues.push({
   //   name: "userID",
   //   value: globalID
@@ -358,11 +358,12 @@ $(function () {
 
 //********************
 function afterLogin(data){
+  globalUser = data.user;
   globalToken=data.authToken;
-  globalFirst=data.firstName;
-  globalLast=data.lastName;
-  globalID=data.userID;
-  console.log(globalID);
+  // globalFirst=data.firstName;
+  // globalLast=data.lastName;
+  // globalID=data.userID;
+  // console.log(globalID);
   
   // console.log(globalID);
   // console.log(globalFirst);

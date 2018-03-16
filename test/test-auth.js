@@ -103,18 +103,13 @@ describe('Auth endpoints', function () {
         .then(res => {
           expect(res).to.have.status(200);
           expect(res.body).to.be.an('object');
-          const userID = res.body.userID;
+          const user = res.body.user;
           const token = res.body.authToken;
           expect(token).to.be.a('string');
           const payload = jwt.verify(token, JWT_SECRET, {
             algorithm: ['HS256']
           });
-          expect(payload.user).to.deep.equal({
-            username,
-            firstName,
-            lastName,
-            userID
-          });
+          expect(payload.user).to.deep.equal(user);
         });
     });
   });
