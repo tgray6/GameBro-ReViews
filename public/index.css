@@ -160,8 +160,18 @@ h4{
     font-size: 10px;
   }
 
+  #editButton{
+    top:-5px;
+
+    font-size: 10px;
+  }
+
   .logo h1{
     font-size: 30px;
+  }
+
+  h1{
+    font-size: 30px !important;
   }
 
   .joyStickPic{
@@ -171,7 +181,7 @@ h4{
   .backButton{
     position: relative !important;
     font-size: 10px !important;
-    top: 0px !important;
+    top: -3px !important;
   }
 
   #mainReviewPage{
@@ -180,11 +190,29 @@ h4{
 
 }
 
-/*@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) {
   .postInfo{
-    display: none;
+    font-size: 20px;
   }
-}*/
+
+  .postInfo2{
+    font-size: 20px;
+  }
+
+  .gamePicture{
+  height: 100px;
+  max-width: 100%;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+
+  .gameImage2{
+  height: 100px;
+  max-width: 100%;
+  border: 1px solid black;
+  box-shadow: 0 2px 4px 0 black;
+}
+}
 
 @media screen and (min-width: 550px){
 .loginDiv{
@@ -193,14 +221,16 @@ h4{
 }
 
 @media screen and (max-width: 640px){
+
+
 img.scorePicture{
   max-width: 100% !important;
-  height: 100px !important;
+  height: 125px !important;
 }
 
 img.scoreImage2{
-  max-width: 100%;
-  height: 100px;
+  max-width: 100% !important;
+  height: 100px !important;
 }
 
 h2.postTitle{
@@ -246,7 +276,7 @@ h4.authorName1{
   width: 100%;
   height: 100%;
   max-width: 100%;
-  margin-bottom: 90px;
+  margin-bottom: 50px;
   margin-left: auto;
   margin-right: auto;
   flex-wrap: wrap;
@@ -321,7 +351,8 @@ h4.authorName1{
 
 .flex-container2{
   width: 100%;
-  height: 100%;
+  height: 150px;
+  max-height: 100%;
   max-width: 1350px;
   margin-left: auto;
   margin-right: auto;
@@ -330,6 +361,9 @@ h4.authorName1{
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 5px solid #d60000;
+  border-top-right-radius: 10%;
+  border-top-left-radius: 10%;
 }
 
 .box2{
@@ -338,6 +372,7 @@ h4.authorName1{
   flex-direction: row;
   width: 650px;
   min-height: 130px;
+  height: 100%;
   max-height: 100%;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -346,8 +381,6 @@ h4.authorName1{
   background-color: #d60000;
 /*  border-radius: 20px;*/
   font-size: 15px;
-  box-shadow: inset 0px 11px 8px -10px black,
-  inset 0px -11px 8px -10px black
 }
 
 .hidden{
@@ -449,11 +482,12 @@ header {
     color: white;
     text-align: center;
     height: 150px;
+    border: 1px solid black;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    border: 1px solid black;
+/*    border: 1px solid black;
     box-shadow: inset 0px 11px 8px -10px black,
-                inset 0px -11px 8px -10px black
+                inset 0px -11px 8px -10px black*/
 }
 
 img.scorePicture{
@@ -461,10 +495,10 @@ img.scorePicture{
   height: 160px;
 }
 
-.scoreImage2{
+img.scoreImage2{
   max-width: 100%;
   height: 130px;
-  width: 130px;
+/*  width: 130px;*/
 }
 
 .footerImage{
