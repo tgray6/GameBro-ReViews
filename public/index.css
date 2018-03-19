@@ -333,12 +333,12 @@ h4.authorName1{
   padding-bottom: 25px;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #d60000;
+  background-color: white;
   border-radius: 20px;
   font-size: 20px;
-  color: white;
-  border: 1px solid black;
-  box-shadow: 0 2px 4px 0 black;
+  color: black;
+  border: 2.25px solid black;
+  box-shadow: 0 2px 10px 0 red;
 }
 
 .flex-containerReview{

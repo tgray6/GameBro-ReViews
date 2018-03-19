@@ -37,24 +37,24 @@
 
       <header role="banner">
         <div class="joyStickBannerFlex">
-          <div class="joyBox1"><img src="/images/joystick.png" class="joyStickPic"></div>
+          <div class="joyBox1"><img src="/images/joystick.png" class="joyStickPic" alt="jotstick picture"></div>
           <h1>GameBro ReViews</h1>
         </div>
       </header>
       <form id="createForm" class="createForm">
         <div>
-          <input required type="text" placeholder="First Name" name="firstName" id="userFirstN">
-          <input required type="text" placeholder="Last Name" name="lastName" id="userLastN">
+          <input required type="text" title ="First Name" placeholder="First Name" name="firstName" id="userFirstN">
+          <input required type="text" title ="Last Name" placeholder="Last Name" name="lastName" id="userLastN">
         </div>
-          <input required type="text" name="username" placeholder="Username" id="createUser">
-          <input required type="password" name="password" minlength="10" placeholder="Password" id="createPassword">
+          <input required type="text" name="username" title ="Username" placeholder="Username" id="createUser">
+          <input required type="password" name="password" title ="Password" minlength="10" placeholder="Password" id="createPassword">
           <div class="indexButton">
              <button type="submit" id="submitButton">Create</button>
           </div>
         </form>
       <form id="loginForm" class="loginForm">
-          <input required type="text" placeholder="Username" id="userName" name="username">
-          <input required type="password" placeholder="Password" id="passWord" name="password">
+          <input required type="text" title ="Login User Name" placeholder="Username" id="userName" name="username">
+          <input required type="password" title ="Login Password" placeholder="Password" id="passWord" name="password">
           <div class="indexButton">
              <button type="submit" id="submitButton2">Login</button>
           </div>
@@ -95,13 +95,13 @@
     <div class="modal-main">
       <div class="formDiv">
         <form id="reviewForm" class="postEdit">
-          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle" maxlength="50">
-          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle" maxlength="50">
-          <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL">
-          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform" maxlength="30">
-          <input required type="number" name="gameScore" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore">
+          <input required type="text" name="postTitle" title="Post Title" placeholder="Enter a Post Title" id="postTitle" maxlength="50">
+          <input required type="text" name="gameTitle" title="Game Title" placeholder="Enter a Game Title" id="postGameTitle" maxlength="50">
+          <input required type="url" name="gameImage" title="Game Image" placeholder="Enter an Image URL" id="postGameURL">
+          <input required type="text" name="gamePlatform" title="Game Platform" placeholder="Enter a Platform" id="postPlatform" maxlength="30">
+          <input required type="number" name="gameScore" title="Game Score" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore">
           <div class="reviewArea">
-          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" placeholder="Type Your Review Here!" id="gameReview"></textarea>
+          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" title="Review Content" placeholder="Type Your Review Here!" id="gameReview"></textarea>
           </div>
           <div formButtons>
             <button type="submit" id="submitButton3">Submit</button>
@@ -174,13 +174,13 @@
     <div class="modal-main">
       <div class="formDiv">
         <form id="reviewForm2" class="postEdit">
-          <input required type="text" name="postTitle" placeholder="Enter a Post Title" id="postTitle2" maxlength="50">
-          <input required type="text" name="gameTitle" placeholder="Enter a Game Title" id="postGameTitle2" maxlength="50">
-          <input required type="url" name="gameImage" placeholder="Enter an Image URL" id="postGameURL2">
-          <input required type="text" name="gamePlatform" placeholder="Enter a Platform" id="postPlatform2" maxlength="30">
-          <input required type="number" name="gameScore" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore2">
+          <input required type="text" name="postTitle" title="Edit Post Title" placeholder="Enter a Post Title" id="postTitle2" maxlength="50">
+          <input required type="text" name="gameTitle" title="Edit Game Title" placeholder="Enter a Game Title" id="postGameTitle2" maxlength="50">
+          <input required type="url" name="gameImage" title="Edit Game Image"placeholder="Enter an Image URL" id="postGameURL2">
+          <input required type="text" name="gamePlatform" title="Edit Game Platform" placeholder="Enter a Platform" id="postPlatform2" maxlength="30">
+          <input required type="number" name="gameScore" title="Edit Game Score" min="0" max="10" placeholder="Enter a Score (0-10)" id="postScore2">
           <div class="reviewArea">
-          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" placeholder="Type Your Review Here!" id="gameReview2"></textarea>
+          <textarea required cols="100" rows="20" textMode="MultiLine" name="postReview" title="Edit Review Content" placeholder="Type Your Review Here!" id="gameReview2"></textarea>
           </div>
           <div formButtons>
             <button type="submit" id="submitButton4">Submit</button>

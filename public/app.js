@@ -39,13 +39,13 @@ function renderHomeData(result){
 	return `
         	<div class="flex-container">
           		<div class="box grow" id="${result.id}"> 
-            		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}">
+            		<div class="gameImage"> <img class="gamePicture" src= "${result.gameImage}" alt="game image">
             		</div>
             		<div class="postInfo"> 
                			<p class="gameTitle">${result.gameTitle}</p> 
                			<p class="platform">${result.gamePlatform}</p>
                     <p class="authorName">${result.author}</p>
-            		</div class="scoreInfo"> <img class="scorePicture" src= "${scoreURL[result.gameScore]}">
+            		</div class="scoreInfo"> <img class="scorePicture" src= "${scoreURL[result.gameScore]}" alt="Score Image">
 
           		</div>
         	</div>
@@ -60,7 +60,7 @@ function renderReviewData(result){
     <div class="reviewOverviewTwo">
       <h2 class="postTitle">${result.postTitle}</h2>
       <h3 class="gameTitle">${result.gameTitle}</h3>
-      <h4 class="authorName1">${result.author}</h4>
+      <h4 class="authorName1">-${result.author}-</h4>
 
       <div class="flexParent2">
         <div class="flex-container">
@@ -76,7 +76,7 @@ function renderReviewData(result){
 <div class="footer">
   <div class="flex-container2">
           <div class="box2"> 
-            <div> <img class="gameImage2" src= ${result.gameImage}>
+            <div> <img class="gameImage2" src= "${result.gameImage}" alt="Game Picture">
             </div>
             <div id="postInfo2">
                
@@ -84,7 +84,7 @@ function renderReviewData(result){
                <p class="platform">${result.gamePlatform}</p>
                <h4 class="authorName">${result.author}</h4>
             </div>
-              <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}">
+              <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}" alt= "Score Picture">
               </div>
           </div>
         </div>
