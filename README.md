@@ -12,8 +12,8 @@ This is an API site for Posting game reviews to share with friends(or it could b
 2. Login
 3. You are taken to the homepage of the reviews.
 4. Click a review to read the full review.
-5. On the homepage, click post to publish a review
-6. On the POST REVIEW form, fill in the form content
+5. On the homepage, click post to publish a review.
+6. On the POST REVIEW form, fill in the form content.
 7. NOTE: To add an image url, just google an image, right click it, select copy image address and paste it into the form.
    **Longer URLS can take a few moments to paste into the form, dont worry, the site isnt frozen.**
 8. After submit, you are taken back to the homepage where you can see your review post.
