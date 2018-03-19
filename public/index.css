@@ -60,6 +60,11 @@ h4{
   color: black;
 }
 
+h4.formInstruct{
+  color: white;
+  font-size: 20px;
+}
+
 .loggedIn{
   color: black;
 }
