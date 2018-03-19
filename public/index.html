@@ -18,7 +18,7 @@
 
 
 
-<div id="loginDivMain" class="">
+<div id="loginDivMain" class="hidden">
   <div class="loginflexContainer">
   <section role="region">
     <div class="loginDiv">
@@ -42,6 +42,7 @@
         </div>
       </header>
       <button class="unhideCreate">Create User</button>
+      <div id="formDIV" class="hidden">
       <form id="createForm" class="createForm" class="hidden">
         <div>
           <input required type="text" title ="First Name" placeholder="First Name" name="firstName" id="userFirstN">
@@ -53,16 +54,19 @@
              <button type="submit" id="submitButton">Create</button>
           </div>
         </form>
+      </div>
       <div class="loginButtonDiv">
         <button class="unhideLogin">Login</button>
       </div>
+      <div id="formDIV2" class="hidden">
       <form id="loginForm" class="loginForm" class="hidden">
           <input required type="text" title ="Login User Name" placeholder="Username" id="userName" name="username">
           <input required type="password" title ="Login Password" placeholder="Password" id="passWord" name="password">
           <div class="indexButton">
              <button type="submit" id="submitButton2">Login</button>
           </div>
-        </form>
+      </form>
+      </div>
         
     </div>
   </section>

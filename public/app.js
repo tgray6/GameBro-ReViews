@@ -116,6 +116,7 @@ function getReviewData(callback) {
 }
 
 
+//RENDERING THE DATA
 function displayReviews(data){
   // console.log(data);
   // console.log(globalAuthor);
@@ -149,6 +150,7 @@ function getAndDisplayReviews(){
 
 
 
+//ONREADY FUNCTIONS
 $(function(){
   unhideCreateForm();
   unhideLoginForm();
@@ -161,13 +163,13 @@ $(function(){
   editButton();
   deleteSubmit();
   closeButton();
-  hideForm();
+  unhideLoginDivMain();
+  // hideForm();
 })
 
-
-
-
-
+function unhideLoginDivMain(){
+  $('#loginDivMain').removeClass("hidden");
+}
 
 
 //INDIVIDUAL REVIEW RENDERING ON CLICK
@@ -213,22 +215,24 @@ $('.box').on('click',function(){
 //UNHIDE INITIAL LOGIN FORMS-CALLED FUNCTIONS ON PAGE READY
 function unhideCreateForm(){
   $('.unhideCreate').click(function(){
-    $('#createForm').show();
+    $('#formDIV').removeClass("hidden");
+    $('#createForm').removeClass("hidden");
     $('.unhideCreate').hide()
   })
 }
 
 function unhideLoginForm(){
   $('.unhideLogin').click(function(){
-    $('#loginForm').show();
+    $('#formDIV2').removeClass("hidden");
+    $('#loginForm').removeClass("hidden");
     $('.unhideLogin').hide()
   })
 }
 
-function hideForm(){
-  $('#createForm').hide();
-  $('#loginForm').hide();
-}
+// function hideForm(){
+//   $('#createForm').hide();
+//   $('#loginForm').hide();
+// }
 
 
 
@@ -239,6 +243,8 @@ function hideForm(){
 
 
 //***************************NEW STUFF FOR EDIT/DELETE***********************
+
+//EDIT FORM UNHIDE
 function editButton(){
   $('#editButton').on('click',function(){
   $('.modalParent2').show();
@@ -357,6 +363,7 @@ function watchSubmit() {
 
 
 
+//ERROR HANDLE
 $(function () {
     //setup ajax error handling
     $.ajaxSetup({
@@ -376,7 +383,7 @@ $(function () {
 
 
 
-
+//FUNCTION FOR AFTER USERS LOGIN
 //********************
 function afterLogin(data){
   globalUser = data.user;
@@ -413,7 +420,7 @@ function alertLoginSuccess(){
 
 
 
-//CREATE USER SUBMIT
+//CREATE USER FORM SUBMI
 function createUser() {
   $('#createForm').submit(function(event) {
     event.preventDefault();
@@ -435,7 +442,7 @@ function createUser() {
   });
 }
 
-// USER LOGIN SUBMIT
+// LOGIN FORM SUBMIT
 function userLogin() {
   $('#loginForm').submit(function(event) {
     event.preventDefault();
@@ -457,6 +464,9 @@ function userLogin() {
   });
 }
 
+
+
+//BACK BUTTON FUNCTION
 function backButton(){
   $('.backButton').on('click',function(){
   fadeOutReviews();
@@ -467,8 +477,7 @@ function backButton(){
 
 
 
-
-
+//UNHIDE POST FORM BUTTON
 function postButtonUnhide(){
   $('.postButton').on('click', function(){
     $('.modalParent').show();
@@ -479,7 +488,7 @@ function postButtonUnhide(){
 
 
 
-//FADING EFFECT
+//FADING EFFECTS
 function timeoutLogin(){
  $("#loginDivMain").fadeOut(1000, function() {
   $(this).hide();
