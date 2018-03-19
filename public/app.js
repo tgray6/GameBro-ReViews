@@ -150,6 +150,8 @@ function getAndDisplayReviews(){
 
 
 $(function(){
+  unhideCreateForm();
+  unhideLoginForm();
   backButton();
   createUser();
   userLogin();
@@ -159,6 +161,7 @@ $(function(){
   editButton();
   deleteSubmit();
   closeButton();
+  hideForm();
 })
 
 
@@ -207,7 +210,25 @@ $('.box').on('click',function(){
 
 
 
+//UNHIDE INITIAL LOGIN FORMS-CALLED FUNCTIONS ON PAGE READY
+function unhideCreateForm(){
+  $('.unhideCreate').click(function(){
+    $('#createForm').show();
+    $('.unhideCreate').hide()
+  })
+}
 
+function unhideLoginForm(){
+  $('.unhideLogin').click(function(){
+    $('#loginForm').show();
+    $('.unhideLogin').hide()
+  })
+}
+
+function hideForm(){
+  $('#createForm').hide();
+  $('#loginForm').hide();
+}
 
 
 

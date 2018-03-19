@@ -41,7 +41,8 @@
           <h1>GameBro ReViews</h1>
         </div>
       </header>
-      <form id="createForm" class="createForm">
+      <button class="unhideCreate">Create User</button>
+      <form id="createForm" class="createForm" class="hidden">
         <div>
           <input required type="text" title ="First Name" placeholder="First Name" name="firstName" id="userFirstN">
           <input required type="text" title ="Last Name" placeholder="Last Name" name="lastName" id="userLastN">
@@ -52,7 +53,10 @@
              <button type="submit" id="submitButton">Create</button>
           </div>
         </form>
-      <form id="loginForm" class="loginForm">
+      <div class="loginButtonDiv">
+        <button class="unhideLogin">Login</button>
+      </div>
+      <form id="loginForm" class="loginForm" class="hidden">
           <input required type="text" title ="Login User Name" placeholder="Username" id="userName" name="username">
           <input required type="password" title ="Login Password" placeholder="Password" id="passWord" name="password">
           <div class="indexButton">
