@@ -137,7 +137,6 @@ function displayReviews(data){
   backButton();
   createUser();
   userLogin();
-  postButtonUnhide();
   $('#deleteButton').hide();
   $('#reviewForm').trigger("reset");
   resetURL();
@@ -164,6 +163,7 @@ $(function(){
   deleteSubmit();
   closeButton();
   unhideLoginDivMain();
+  postButtonUnhide();
   // hideForm();
 })
 
