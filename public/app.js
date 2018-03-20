@@ -246,10 +246,11 @@ function unhideLoginForm(){
 
 //EDIT FORM UNHIDE
 function editButton(){
-  $('#editButton').on('click',function(){
+  $('#editButton').mousedown(function(){
   $('.modalParent2').show();
 });
 }
+
 
 
 
@@ -479,7 +480,7 @@ function backButton(){
 
 //UNHIDE POST FORM BUTTON
 function postButtonUnhide(){
-  $('.postButton').on('click', function(){
+  $('.postButton').mousedown(function(){
     $('.modalParent').show();
   })
 }
