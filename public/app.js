@@ -163,7 +163,7 @@ $(function(){
   deleteSubmit();
   closeButton();
   unhideLoginDivMain();
-  postButtonUnhide();
+  postButton();
   // hideForm();
 })
 
@@ -479,7 +479,7 @@ function backButton(){
 
 
 //UNHIDE POST FORM BUTTON
-function postButtonUnhide(){
+function postButton(){
   $('.postButton').mousedown(function(){
     $('.modalParent').show();
   })
