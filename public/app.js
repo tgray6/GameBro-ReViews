@@ -480,7 +480,7 @@ function backButton(){
 
 //UNHIDE POST FORM BUTTON
 function postButton(){
-  $('.postButton').mousedown(function(){
+  $('.postButton').click(function(){
     $('.modalParent').show();
   })
 }
@@ -563,9 +563,9 @@ const modalService = () => {
       const trigger = button.getAttribute('data-modal-trigger');
       const modal = d.querySelector(`[data-modal=${trigger}]`);
       const modalBody = modal.querySelector('.modal-body');
-      const closeBtn = modal.querySelector('.close');
+      // const closeBtn = modal.querySelector('.close');
       
-      closeBtn.addEventListener('click', () => modal.classList.remove('is-open'))
+      // closeBtn.addEventListener('click', () => modal.classList.remove('is-open'))
       // modal.addEventListener('click', () => modal.classList.remove('is-open'))
       
       modalBody.addEventListener('click', (e) => e.stopPropagation());
