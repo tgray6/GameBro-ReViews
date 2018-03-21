@@ -246,7 +246,7 @@ function unhideLoginForm(){
 
 //EDIT FORM UNHIDE
 function editButton(){
-  $('#editButton').mousedown(function(){
+  $('#editButton').click(function(){
   $('.modalParent2').show();
 });
 }
