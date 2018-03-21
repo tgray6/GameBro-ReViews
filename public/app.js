@@ -370,16 +370,32 @@ $(function () {
     $.ajaxSetup({
         error: function (x, status, error) {
             if (x.status == 401) {
-                alert("Incorrect Username or Password");
+                loginError();
             }
             else if (x.status ==422){
-              alert("Username already exists");
+              createUserError();
             }
         }
     });
 });
 
+function hideLoginModal(){
+  $('.loginMsgModal').hide()
+  $('.createMsgModal').hide();
+}
 
+
+function loginError(){
+  $('.loginMsgModal').show();
+  $('.loginMessage').html("Incorrect Username or Password");
+  setTimeout(hideLoginModal, 3000);
+}
+
+function createUserError(){
+  $('.createMsgModal').show();
+  $('.createMessage').html("Username Already Taken");
+  setTimeout(hideLoginModal, 3000);
+}
 
 
 
@@ -409,12 +425,14 @@ function afterLogin(data){
 function alertUserCreated(){
   // alert("Account Created")
   $('.createMsgModal').show();
-  setTimeout(window.location.reload.bind(window.location), 1500);
+  $('.createMessage').html('User Created: Please Login');
+  setTimeout(window.location.reload.bind(window.location), 3000);
 }
 
 function alertLoginSuccess(){
   // alert("Login Successful")
   $('.loginMsgModal').show();
+  $('.loginMessage').html('Logging In');
 }
 
 //*******************************

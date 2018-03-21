@@ -654,5 +654,6 @@ button:active {
     padding: 20px;
     border: 1px solid black;
     border-radius: 20px;
-    width: 200px;
+    max-width: 100%;
+    width: 400px;
 }
