@@ -295,26 +295,27 @@ function editSubmit() {
 //DELETE
 function deleteSubmit() {
   $('#deleteButton2').on('click',function(event) {
-  $('.modalParent2').hide();
-  fadeOutReviews();
-  fadeInHome();
-  event.preventDefault();
+    if (confirm (" You Sure!?")) {
+      $('.modalParent2').hide();
+      fadeOutReviews();
+      fadeInHome();
+      event.preventDefault();
 
 
-  const settings = {
-    headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
-    dataType: "json",
-    crossDomain: true,
-    type: 'DELETE',
-    url: editURL,
-    success: getAndDisplayReviews
-  };
-  $.ajax(settings);
+      const settings = {
+        headers: {
+        'Authorization': 'Bearer ' + globalToken
+        },
+        dataType: "json",
+        crossDomain: true,
+        type: 'DELETE',
+        url: editURL,
+        success: getAndDisplayReviews
+      };
+      $.ajax(settings);
+     }
   });
 }
-
 
 
 //****************************************************************************
