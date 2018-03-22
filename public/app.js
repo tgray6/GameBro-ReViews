@@ -295,7 +295,7 @@ function editSubmit() {
 //DELETE
 function deleteSubmit() {
   $('#deleteButton2').on('click',function(event) {
-    if (confirm (" You Sure!?")) {
+    if (confirm (" You Sure You Want To Delete This Review!?")) {
       $('.modalParent2').hide();
       fadeOutReviews();
       fadeInHome();
