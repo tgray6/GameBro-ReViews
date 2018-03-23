@@ -6,8 +6,6 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 
 
-// Mongoose internally uses a promise-like object,
-// but its better to make Mongoose use built in es6 promises
 mongoose.Promise = global.Promise;
 
 const { PORT, DATABASE_URL } = require('./config');
@@ -20,7 +18,7 @@ app.use(morgan('common'));
 
 
 
-//NEW SECTION FOR USERS AND AUTHENTICATION**************
+//USERS AND AUTHENTICATION
 
 const passport = require('passport');
 
@@ -31,7 +29,6 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 const {User} = require('./models');
 
 //USERS ROUTER data
-// const {router} = require('./router');
 const { router: usersRouter } = require('./users');
 const { router: authRouter, localStrategy, jwtStrategy } = require('./auth');
 app.use('/users', usersRouter);
@@ -51,11 +48,8 @@ app.use(function (req, res, next) {
   next();
 });
 
-//END NEW SECTION**************************************
 
-
-
-
+//GET
 app.get('/reviews', jwtAuth, (req, res) =>{
 	PostReview
 		.find()
@@ -75,7 +69,7 @@ app.get('/reviews', jwtAuth, (req, res) =>{
 });
 
 
-
+//POST
 app.post('/reviews', jwtAuth, (req, res) => {
   console.log(req.body)
 	PostReview
@@ -94,25 +88,7 @@ app.post('/reviews', jwtAuth, (req, res) => {
 });
 
 
-
-//PUT endpoint
-// app.put('/reviews/:id', (req, res) => {
-//   const updated = {};
-//   const updatedFields = ["postTitle", "gameTitle", "gamePlatform", "gameScore", "gameImage", "postReview"];
-//     updatedFields.forEach(field => {
-//     if (field in req.body) {
-//       updated[field] = req.body[field];
-//     }
-//   });
-
-//   PostReview
-//     .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
-//     .then(updatedReview => res.status(204).end())
-//     .catch(err => res.status(500).json({message: "Something Broke"}));
-// });
-
-
-//NEW PUT ENDPOINT
+//PUT ENDPOINT
 app.put('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
     .findById(req.params.id)
@@ -141,8 +117,6 @@ app.put('/reviews/:id', jwtAuth, (req, res) => {
 
 
 
-
-
 //DELETE ENDPOINT
 app.delete('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
@@ -166,15 +140,8 @@ app.delete('/reviews/:id', jwtAuth, (req, res) => {
 });
 
 
-
-//COPIED AND PASTED runServer and closeServer from node-restaurants app
-
-// closeServer needs access to a server object, but that only
-// gets created when `runServer` runs, so we declare `server` here
-// and then assign a value to it in run
 let server;
 
-// this function connects to our database, then starts the server
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {
 
   return new Promise((resolve, reject) => {
@@ -194,8 +161,6 @@ function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   });
 }
 
-// this function closes the server, and returns a promise. we'll
-// use it in our integration tests later.
 function closeServer() {
   return mongoose.disconnect().then(() => {
     return new Promise((resolve, reject) => {
@@ -210,8 +175,6 @@ function closeServer() {
   });
 }
 
-// if server.js is called directly (aka, with `node server.js`), this block
-// runs. but we also export the runServer command so other code (for instance, test code) can start the server as needed.
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 }

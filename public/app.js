@@ -1,23 +1,3 @@
-//THIS IS THE SITE BEFORE FINAL COMMIT-
-//THIS IS TO KEEP THE NOTES BEFORE FINAL CLEANUP
-
-// let mockReviewData = {
-// 	recentReviews: [
-// 	{
-// 		author:{
-// 			firstName: "Tyler",
-// 			lastName: "Gray"
-// 		},
-// 		postTitle: "Best Game Ever",
-// 		gameTitle: "Mario Odyssey",
-// 		gamePlatform: "Nintendo Switch",
-// 		gameScore: "10",
-// 		gameImage: "https://www.gaminginstincts.com/wp-content/uploads/2017/11/super-mario-odyssey-150x150.png",
-// 		postReview: "Super Mario Odyssey displays a clear understanding of what makes Mario tick, and is neck and neck for top billing among its esteemed predecessors. It surprises you with not just inventive mechanics, of which there are many, but with expertly tuned level design and moments of charismatic wit. It is comfortable in absurdity and wields this attitude to cut through the limitations of its otherwise straightforward structure and keep you smiling all along the way."
-// 	},
-//     ]
-// };
-
 globalToken = null;
 
 const scoreURL = [
@@ -37,7 +17,7 @@ const scoreURL = [
 
 
 
-//HOMEPAGE DATA (homepage.html)
+//HOMEPAGE DATA
 function renderHomeData(result){
 	return `
         	<div class="flex-container">
@@ -56,7 +36,7 @@ function renderHomeData(result){
 }
 
 
-//REVIEW DATA (review.html)
+//REVIEW DATA
 function renderReviewData(result){
 	return `
 	<section role="region">
@@ -121,19 +101,12 @@ function getReviewData(callback) {
 
 //RENDERING THE DATA
 function displayReviews(data){
-  // console.log(data);
-  // console.log(globalAuthor);
   lastData = data.reviews;
   localStorage.setItem("storedReviews", JSON.stringify(lastData))
-  // console.log(localStorage.getItem("storedReviews"))
 	
 	const reviewResults = data.reviews.map(renderHomeData);
   $(".flexParent").html(reviewResults);
 
-	
-  // const loginResults = data.reviews.map(renderLoginData);
-
-  // $(".authorName").html(globalAuthor);
 	$(".loginText").html("Logged in as : " + globalUser.firstName + " " + globalUser.lastName);
 
   reviewPage();
@@ -167,7 +140,6 @@ $(function(){
   closeButton();
   unhideLoginDivMain();
   postButton();
-  // hideForm();
 })
 
 function unhideLoginDivMain(){
@@ -180,17 +152,12 @@ function reviewPage(){
 $('.box').on('click',function(){
   fadeOutHome()
   fadeInReviews()
-  // console.log(lastData);
   let reviewZ = lastData.find(review=> review.id == this.id);
-  // console.log(reviewZ);
   let reviewResults2 = renderReviewData(reviewZ);
-  // console.log(reviewResults2);
   $(".mainReviewDiv").html(reviewResults2);
-  // console.log(this.id);
   let authorData = reviewZ.author_id;
 
   editURL = editURL+this.id;
-  console.log(editURL);
   let editSettings = {
     "postTitle": reviewZ.postTitle,
     "gameTitle": reviewZ.gameTitle,
@@ -199,9 +166,6 @@ $('.box').on('click',function(){
     "gameImage": reviewZ.gameImage,
     "postReview": reviewZ.postReview
   }
-
-  console.log(editSettings);
-
 
   if( authorData === globalUser.userID){
     $('#editButton').removeClass('hidden');
@@ -231,12 +195,6 @@ function unhideLoginForm(){
     $('.unhideLogin').hide()
   })
 }
-
-// function hideForm(){
-//   $('#createForm').hide();
-//   $('#loginForm').hide();
-// }
-
 
 
 
@@ -344,10 +302,7 @@ function watchSubmit() {
     name: "lastName",
     value: globalUser.lastName
   })
-  // formValues.push({
-  //   name: "userID",
-  //   value: globalID
-  // })
+
   console.log(formValues);
   const settings = {
     data:formValues,
@@ -369,7 +324,6 @@ function watchSubmit() {
 
 //ERROR HANDLE
 $(function () {
-    //setup ajax error handling
     $.ajaxSetup({
         error: function (x, status, error) {
             if (x.status == 401) {
@@ -408,32 +362,20 @@ function createUserError(){
 function afterLogin(data){
   globalUser = data.user;
   globalToken=data.authToken;
-  // globalFirst=data.firstName;
-  // globalLast=data.lastName;
-  // globalID=data.userID;
-  // console.log(globalID);
-  
-  // console.log(globalID);
-  // console.log(globalFirst);
-  // console.log(globalLast);
-  // console.log(globalToken);
   alertLoginSuccess()
   getAndDisplayReviews()
   timeoutLogin()
-  // $('#loginDivMain').addClass('hidden');
   $('#homePageDiv').fadeIn(3000);
   $('#homePageDiv').removeClass('hidden');
 }
 
 function alertUserCreated(){
-  // alert("Account Created")
   $('.createMsgModal').show();
   $('.createMessage').html('User Created: Please Login');
   setTimeout(window.location.reload.bind(window.location), 3000);
 }
 
 function alertLoginSuccess(){
-  // alert("Login Successful")
   $('.loginMsgModal').show();
   $('.loginMessage').html('Logging In');
 }
@@ -506,10 +448,6 @@ function postButton(){
   })
 }
 
-
-
-
-
 //FADING EFFECTS
 function timeoutLogin(){
  $("#loginDivMain").fadeOut(1000, function() {
@@ -529,8 +467,6 @@ function fadeOutReviews(){
     });
 }
 
-
-
 function fadeInHome(){
  $("#homePageDiv").fadeIn(3000, function() {
   $(this).show();
@@ -543,7 +479,6 @@ function fadeOutHome(){
     });
 }
 
-
 function closeButton(){
   $('.close').on('click', function(event){
     event.preventDefault();
@@ -551,21 +486,6 @@ function closeButton(){
   $('.modalParent2').hide();
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //modal form
@@ -584,21 +504,11 @@ const modalService = () => {
       const trigger = button.getAttribute('data-modal-trigger');
       const modal = d.querySelector(`[data-modal=${trigger}]`);
       const modalBody = modal.querySelector('.modal-body');
-      // const closeBtn = modal.querySelector('.close');
-      
-      // closeBtn.addEventListener('click', () => modal.classList.remove('is-open'))
-      // modal.addEventListener('click', () => modal.classList.remove('is-open'))
       
       modalBody.addEventListener('click', (e) => e.stopPropagation());
 
       modal.classList.toggle('is-open');
-      
-      // Close modal when hitting escape
-      // body.addEventListener('keydown', (e) => {
-      //   if(e.keyCode === 27) {
-      //     modal.classList.remove('is-open')
-      //   }
-      // });
+
     });
   }
 }
