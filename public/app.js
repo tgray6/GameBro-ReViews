@@ -1,3 +1,6 @@
+//THIS IS THE SITE BEFORE FINAL COMMIT-
+//THIS IS TO KEEP THE NOTES BEFORE FINAL CLEANUP
+
 // let mockReviewData = {
 // 	recentReviews: [
 // 	{
@@ -288,7 +291,6 @@ function editSubmit() {
   });
 }
 
-//for commit message
 
 
 
