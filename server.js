@@ -19,7 +19,6 @@ app.use(morgan('common'));
 
 
 //USERS AND AUTHENTICATION
-
 const passport = require('passport');
 
 //JSON WEB TOKEN AUTH
@@ -54,7 +53,7 @@ app.get('/reviews', jwtAuth, (req, res) =>{
 	PostReview
 		.find()
     .sort({'created': 'desc'})
-    .limit(5)
+    .limit(5) //TODO: ADD Button to show next 5 reviews
 		.then(reviews => {
 			res.json({
 				reviews: reviews.map(
@@ -71,11 +70,11 @@ app.get('/reviews', jwtAuth, (req, res) =>{
 
 //POST
 app.post('/reviews', jwtAuth, (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
 	PostReview
 		.create({
-			author: {firstName: req.body.firstName,
-               lastName: req.body.lastName},
+			author: {firstName: req.user.firstName,
+               lastName: req.user.lastName},
       author_id: req.user.userID,
 			postTitle: req.body.postTitle,
 			gameTitle: req.body.gameTitle,
@@ -93,10 +92,7 @@ app.put('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
     .findById(req.params.id)
     .then(review => {
-      console.log(review.author_id);
-      console.log(req.user);
         if(review.author_id!==req.user.userID){
-          console.log("Ids don't match");
           res.status(403).json({message: `${review.author_id} does not match ${req.user.userID}`});
           return null;
         }
@@ -122,8 +118,6 @@ app.delete('/reviews/:id', jwtAuth, (req, res) => {
   PostReview
     .findById(req.params.id)
     .then(review => {
-      console.log(review.author_id);
-      console.log(req.user);
         if(review.author_id!==req.user.userID){
           console.log("Ids don't match");
           res.status(403).json({message: `${review.author_id} does not match ${req.user.userID}`});

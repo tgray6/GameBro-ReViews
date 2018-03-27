@@ -72,6 +72,7 @@ UserSchema.methods.userserialize = function() {
   };
 };
 
+//BCRYPT PASSWORD VALIDATION
 UserSchema.methods.validatePassword = function(password) {
   return bcrypt.compare(password, this.password);
 };

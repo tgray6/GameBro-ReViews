@@ -17,7 +17,7 @@ const scoreURL = [
 
 
 
-//HOMEPAGE DATA
+//RENDERS SINGLE REVIEW BOX ON HOMEPAGE AFTER LOGIN
 function renderHomeData(result){
 	return `
         	<div class="flex-container">
@@ -36,7 +36,7 @@ function renderHomeData(result){
 }
 
 
-//REVIEW DATA
+//RENDERS THE INDIVIDUAL REVIEW ON CLICK FROM HOMEPAGE
 function renderReviewData(result){
 	return `
 	<section role="region">
@@ -56,8 +56,8 @@ function renderReviewData(result){
   </section>
 
 
-<div class="footer">
-  <div class="flex-container2">
+  <div class="footer">
+    <div class="flex-container2">
           <div class="box2"> 
             <div> <img class="gameImage2" src= "${result.gameImage}" alt="Game Picture">
             </div>
@@ -70,26 +70,30 @@ function renderReviewData(result){
               <div> <img class="scoreImage2" src= "${scoreURL[result.gameScore]}" alt= "Score Picture">
               </div>
           </div>
-        </div>
-</div>`
+    </div>
+  </div>`
 }
 
 
-let authURL = '/auth/login'
-let userURL = '/users'
-let editURL = '/reviews/'
-let apiURL = '/reviews';
+const authURL = '/auth/login';
+const userURL = '/users';
+const apiURL = '/reviews';
+
+let editURL = '/reviews/';
 
 function resetURL(){
   editURL = '/reviews/';
 }
 
+
+//GET ENDPOINT FOR THE REVIEW DATA
+//CALLED UPON LOGIN AND SUBMISSION OF FORMS
 function getReviewData(callback) {
   const settings = {
     dataType: "json",
-        headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
+    headers: {
+          'Authorization': 'Bearer ' + globalToken
+    },
     crossDomain: true,
     type: 'GET',
     url: apiURL,
@@ -99,7 +103,7 @@ function getReviewData(callback) {
 }
 
 
-//RENDERING THE DATA
+//RENDERING THE DATA FOR getReviewData function above. THIS IS A KEY FUNCTION FOR ALL SCREENS
 function displayReviews(data){
   lastData = data.reviews;
   localStorage.setItem("storedReviews", JSON.stringify(lastData))
@@ -158,18 +162,10 @@ $('.box').on('click',function(){
   let authorData = reviewZ.author_id;
 
   editURL = editURL+this.id;
-  let editSettings = {
-    "postTitle": reviewZ.postTitle,
-    "gameTitle": reviewZ.gameTitle,
-    "gamePlatform": reviewZ.gamePlatform,
-    "gameScore": reviewZ.gameScore,
-    "gameImage": reviewZ.gameImage,
-    "postReview": reviewZ.postReview
-  }
 
   if( authorData === globalUser.userID){
     $('#editButton').removeClass('hidden');
-      editForm('#reviewForm2', editSettings);
+    editForm('#reviewForm2', reviewZ);
   }
   else{
     $('#editButton').addClass('hidden');
@@ -177,6 +173,15 @@ $('.box').on('click',function(){
   });
 };
 
+//Fills the form with the clicked on review for the edit form
+//CALLING A FUNCTION FOR EACH ITEM IN DATA. THAT FUNCTION LOOKS UP THE ELEMENT WITH ATTRIBUTE '[name='+key+' WITHIN THE SUPPLIED FORM AND SETS THE VALUE TO value.
+//$.each takes all key/value pairs in the supplied object and calls the supplied function with the key and the value as parameters. 
+//This is a bit more succinct than using object.entries.
+function editForm(form, data){
+  $.each(data, function(key, value){
+    $('[name='+key+']', form).val(value);
+  });
+}
 
 
 //UNHIDE INITIAL LOGIN FORMS-CALLED FUNCTIONS ON PAGE READY
@@ -199,13 +204,9 @@ function unhideLoginForm(){
 
 
 
-
-
-
-
 //***************************NEW STUFF FOR EDIT/DELETE***********************
 
-//EDIT FORM UNHIDE
+//SHOWS FORM ON EDIT BUTTON CLICK
 function editButton(){
   $('#editButton').click(function(){
   $('.modalParent2').show();
@@ -213,46 +214,35 @@ function editButton(){
 }
 
 
-
-
-
-//edit form Fill Data-fills the form with the clicked review for edit
-function editForm(form, data){
-$.each(data, function(key, value){
-  $('[name='+key+']', form).val(value);
-});
-}
-
-
-//PUT
+//THIS IS THE FUNCTION THAT SUBMITS AN EDITED REVIEW
 function editSubmit() {
   $('#reviewForm2').submit(function(event) {
-  $('.modalParent2').hide();
-  fadeOutReviews();
-  fadeInHome();
-  event.preventDefault();
+    $('.modalParent2').hide();
+    fadeOutReviews();
+    fadeInHome();
+    event.preventDefault();
 
-  let formValues = $(this).serializeArray();
+    let formValues = $(this).serializeArray();
 
-  const settings = {
-    data:formValues,
-    headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
-    dataType: "json",
-    crossDomain: true,
-    type: 'PUT',
-    url: editURL,
-    success: getAndDisplayReviews
-  };
-  $.ajax(settings);
+    const settings = {
+      data:formValues,
+      headers: {
+        'Authorization': 'Bearer ' + globalToken
+      },
+      dataType: "json",
+      crossDomain: true,
+      type: 'PUT',
+      url: editURL,
+      success: getAndDisplayReviews
+    };
+    $.ajax(settings);
   });
 }
 
 
 
 
-//DELETE
+//DELETE A REVIEW ON CLICK OF THE DELETE BUTTON
 function deleteSubmit() {
   $('#deleteButton2').on('click',function(event) {
     if (confirm (" You Sure You Want To Delete This Review!?")) {
@@ -264,7 +254,7 @@ function deleteSubmit() {
 
       const settings = {
         headers: {
-        'Authorization': 'Bearer ' + globalToken
+          'Authorization': 'Bearer ' + globalToken
         },
         dataType: "json",
         crossDomain: true,
@@ -273,7 +263,7 @@ function deleteSubmit() {
         success: getAndDisplayReviews
       };
       $.ajax(settings);
-     }
+    }
   });
 }
 
@@ -285,36 +275,25 @@ function deleteSubmit() {
 
 
 
-//FORM SUBMIT
+//FORM SUBMIT-POSTS THE REVIEW ON SUBMISSION OF THE FORM
 function watchSubmit() {
   $('#reviewForm').submit(function(event) {
     $('.modalParent').hide();
     event.preventDefault();
 
+    let formValues = $(this).serializeArray();
 
-  let formValues = $(this).serializeArray();
-  formValues.push({
-    name: "firstName",
-    value: globalUser.firstName
-    }
-  )
-  formValues.push({
-    name: "lastName",
-    value: globalUser.lastName
-  })
-
-  console.log(formValues);
-  const settings = {
-    data:formValues,
-    headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
-    dataType: "json",
-    crossDomain: true,
-    type: 'POST',
-    url: apiURL,
-    success: getAndDisplayReviews
-  };
+    const settings = {
+     data:formValues,
+      headers: {
+        'Authorization': 'Bearer ' + globalToken
+      },
+      dataType: "json",
+      crossDomain: true,
+      type: 'POST',
+      url: apiURL,
+      success: getAndDisplayReviews
+    };
   $.ajax(settings);
   });
 }
@@ -362,14 +341,13 @@ function createUserError(){
 function afterLogin(data){
   globalUser = data.user;
   globalToken=data.authToken;
-  alertLoginSuccess()
-  getAndDisplayReviews()
-  timeoutLogin()
-  $('#homePageDiv').fadeIn(3000);
-  $('#homePageDiv').removeClass('hidden');
+  alertLoginSuccess();
+  getAndDisplayReviews();
+  fadeoutLogin();
+  fadeInHome();
 }
 
-function alertUserCreated(){
+function onUserCreated(){
   $('.createMsgModal').show();
   $('.createMessage').html('User Created: Please Login');
   setTimeout(window.location.reload.bind(window.location), 3000);
@@ -389,20 +367,20 @@ function createUser() {
   $('#createForm').submit(function(event) {
     event.preventDefault();
 
-  let formValues = $(this).serializeArray();
+    let formValues = $(this).serializeArray();
 
-  const settings = {
-    data:formValues,
+    const settings = {
+      data:formValues,
         headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
-    dataType: "json",
-    crossDomain: true,
-    type: 'POST',
-    url: userURL,
-    success: alertUserCreated
-  };
-  $.ajax(settings);
+          'Authorization': 'Bearer ' + globalToken
+        },
+      dataType: "json",
+      crossDomain: true,
+      type: 'POST',
+      url: userURL,
+      success: onUserCreated
+    };
+    $.ajax(settings);
   });
 }
 
@@ -411,35 +389,36 @@ function userLogin() {
   $('#loginForm').submit(function(event) {
     event.preventDefault();
 
-  let formValues = $(this).serializeArray();
+    let formValues = $(this).serializeArray();
 
-  const settings = {
-    data:formValues, 
-    headers: {
-    'Authorization': 'Bearer ' + globalToken
-  },
-    dataType: "json",
-    crossDomain: true,
-    type: 'POST',
-    url: authURL,
-    success: afterLogin
-  };
-  $.ajax(settings);
+    const settings = {
+      data:formValues, 
+        headers: {
+          'Authorization': 'Bearer ' + globalToken
+        },
+      dataType: "json",
+      crossDomain: true,
+      type: 'POST',
+      url: authURL,
+      success: afterLogin
+    };
+    $.ajax(settings);
   });
 }
+
+
+
 
 
 
 //BACK BUTTON FUNCTION
 function backButton(){
   $('.backButton').on('click',function(){
-  fadeOutReviews();
-  fadeInHome();
-  resetURL();
-});
+    fadeOutReviews();
+    fadeInHome();
+    resetURL();
+  });
 }
-
-
 
 //UNHIDE POST FORM BUTTON
 function postButton(){
@@ -449,69 +428,40 @@ function postButton(){
 }
 
 //FADING EFFECTS
-function timeoutLogin(){
- $("#loginDivMain").fadeOut(1000, function() {
-  $(this).hide();
-    });
+function fadeoutLogin(){
+  $("#loginDivMain").fadeOut(1000, function() {
+    $(this).hide();
+  });
 }
 
 function fadeInReviews(){
- $("#mainReviewPage").fadeIn(1000, function() {
-  $(this).removeClass('hidden');
-    });
+  $("#mainReviewPage").fadeIn(1000, function() {
+    $(this).removeClass('hidden');
+  });
 }
 
 function fadeOutReviews(){
- $("#mainReviewPage").fadeOut(1000, function() {
-  $(this).hide();
-    });
+  $("#mainReviewPage").fadeOut(1000, function() {
+    $(this).hide();
+  });
 }
 
 function fadeInHome(){
- $("#homePageDiv").fadeIn(3000, function() {
-  $(this).show();
-    });
+  $("#homePageDiv").fadeIn(3000, function() {
+    $(this).show();
+  });
 }
 
 function fadeOutHome(){
- $("#homePageDiv").fadeOut(250, function() {
-  $(this).hide();
-    });
+  $("#homePageDiv").fadeOut(250, function() {
+    $(this).hide();
+  });
 }
 
 function closeButton(){
   $('.close').on('click', function(event){
     event.preventDefault();
-  $('.modalParent').hide();
-  $('.modalParent2').hide();
+    $('.modalParent').hide();
+    $('.modalParent2').hide();
   })
 }
-
-
-//modal form
-const modalService = () => {
-  const d = document;
-  const body = d.querySelector('body');
-  const buttons = d.querySelectorAll('[data-modal-trigger]');
-  
-  // attach click event to all modal triggers
-  for(let button of buttons) {
-    triggerEvent(button);
-  }
-  
-  function triggerEvent(button) {
-    button.addEventListener('click', () => {
-      const trigger = button.getAttribute('data-modal-trigger');
-      const modal = d.querySelector(`[data-modal=${trigger}]`);
-      const modalBody = modal.querySelector('.modal-body');
-      
-      modalBody.addEventListener('click', (e) => e.stopPropagation());
-
-      modal.classList.toggle('is-open');
-
-    });
-  }
-}
-
-modalService();
-//end modal
