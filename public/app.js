@@ -362,7 +362,7 @@ function alertLoginSuccess(){
 
 
 
-//CREATE USER FORM SUBMI
+//CREATE USER FORM SUBMIT
 function createUser() {
   $('#createForm').submit(function(event) {
     event.preventDefault();
